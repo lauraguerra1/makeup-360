@@ -1,16 +1,15 @@
+import './Category.css'
+
 interface CategoryProps {
   category: string
   updateCategory: (category: string | null) => void
+  selected: boolean
 }
 
-const Category = ({category, updateCategory}: CategoryProps) => {
+const Category = ({category, selected, updateCategory}: CategoryProps) => {
 
-  const handleClick = (category: string) => {
-
-  }
-  
   return (
-    <section >
+    <section onClick={() => updateCategory(category)} className={selected ? 'filled': 'empty'}>
       {category}
     </section>
   )

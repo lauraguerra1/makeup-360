@@ -1,0 +1,7 @@
+.filled {
+  border: 1px solid red;
+}
+
+.empty {
+  border: 1px solid black;
+}

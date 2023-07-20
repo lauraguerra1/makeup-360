@@ -6,7 +6,9 @@ const Form = () => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
   
   const updateCategory = (category: string | null):void => {
-    setSelectedCategory(category)
+    setSelectedCategory(prevState => {
+      return prevState !== category ? category : null
+    })
   }
 
   return (

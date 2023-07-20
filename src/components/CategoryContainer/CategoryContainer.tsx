@@ -1,3 +1,4 @@
+import './CategoryContainer.css'
 import Category from "../Category/Category"
 interface CategoryContainerProps {
   selectedCategory: string | null ,

@@ -1,0 +1,8 @@
+nav {
+  height: 200px;
+  border-bottom: 1px solid black;
+}
+
+nav > img {
+  height: 100px
+}

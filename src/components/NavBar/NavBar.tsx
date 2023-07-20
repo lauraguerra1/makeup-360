@@ -1,3 +1,4 @@
+import './NavBar.css'
 import logo from '../../images/lipstick.png'
 import Form from '../Form/Form'
 const NavBar = () => {

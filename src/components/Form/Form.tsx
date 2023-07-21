@@ -1,7 +1,14 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import CategoryContainer from "../CategoryContainer/CategoryContainer"
+import { Product } from "../../apiTypes"
+import { makeSnakeCase } from "../../helpers"
 
-const Form = () => {
+interface FormProps {
+  products: Product[]
+  updateProducts: (brand: string, type: string | null) => void 
+}
+
+const Form = ({products, updateProducts}: FormProps) => {
   const [searchData, setSearchData] = useState<string>('')
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
   
@@ -11,9 +18,16 @@ const Form = () => {
     })
   }
 
+  useEffect(() => {
+    console.log('snakecase', makeSnakeCase(selectedCategory))
+   const filter = products.filter(p => p.product_type === makeSnakeCase(selectedCategory))
+    console.log('product by type', filter)
+   updateProducts(searchData, makeSnakeCase(selectedCategory))
+  }, [searchData, selectedCategory])
+
   return (
     <form>
-      <input type='search' placeholder='Search for brand...' />
+      <input type='search' placeholder='Search for brand...' value={searchData} onChange={(e) => setSearchData(e.target.value)}/>
       <CategoryContainer selectedCategory={selectedCategory} updateCategory={updateCategory} />
     </form>
   )

@@ -1,7 +1,17 @@
 .filled {
-  border: 1px solid red;
+  background-color: #e6beae;
 }
 
 .empty {
-  border: 1px solid black;
+  background-color: #eee4e1
+}
+
+.category {
+  padding: .75rem;
+  margin-left: .75em;
+  margin-right: .75em;
+  border: 1px solid #d1b296;
+  border-radius: 15px;
+  min-width: fit-content;
+  cursor: pointer;
 }

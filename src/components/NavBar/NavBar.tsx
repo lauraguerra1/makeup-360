@@ -1,6 +1,7 @@
 import './NavBar.css'
 import logo from '../../images/logo.png'
 import favorite from '../../images/favorite.png'
+import cancel from '../../images/cancel.png'
 import { Product } from '../../apiTypes'
 import { useEffect, useState } from 'react'
 import CategoryContainer from '../CategoryContainer/CategoryContainer'
@@ -38,11 +39,15 @@ const NavBar = ({loading, products, updateProducts}: NavBarProps) => {
   <nav>
     <div className='top-nav'>
       <img src={logo} alt="Makeup 360 logo"/>
-      {!loading && <input className='search' type='search' placeholder='Search for brand...' value={searchData} onChange={(e) => setSearchData(e.target.value)}/>}
-      <Link to='/favorites'><img src={favorite} alt='view favorites' /></Link>
+      <div className='small-screen-flex'>
+        {!loading && <input className='search' type='search' placeholder='Search for a brand...' value={searchData} onChange={(e) => setSearchData(e.target.value)}/>}
+        <Link className='favorites' to='/favorites'><img src={favorite} alt='view favorites link' /></Link>
+      </div>
     </div>
-    {!loading && <CategoryContainer selectedCategory={selectedCategory} updateCategory={updateCategory} />}
-    {clearAllowed && <button onClick={clearSearch}>Clear</button>}
+    <div className='bottom-nav'>
+      {!loading && <CategoryContainer selectedCategory={selectedCategory} updateCategory={updateCategory} />}
+      {clearAllowed && <button className='clear-search' onClick={clearSearch}><img src={cancel} alt='clear search button' /></button>}
+    </div>
   </nav>
  )
 }

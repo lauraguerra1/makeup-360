@@ -1,8 +1,9 @@
 import './NavBar.css'
-import logo from '../../images/lipstick.png'
-import Form from '../Form/Form'
+import logo from '../../images/logo.png'
 import { Product } from '../../apiTypes'
 import { useEffect, useState } from 'react'
+import CategoryContainer from '../CategoryContainer/CategoryContainer'
+import { makeSnakeCase } from '../../helpers'
 
 interface NavBarProps {
   loading: boolean
@@ -11,11 +12,34 @@ interface NavBarProps {
 }
 
 const NavBar = ({loading, products, updateProducts}: NavBarProps) => {
+  const [searchData, setSearchData] = useState<string>('')
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
+  const [clearAllowed, setClearAllowed] = useState(false)
+  
+  const updateCategory = (category: string | null):void => {
+    setSelectedCategory(prevState => {
+      return prevState !== category ? category : null
+    })
+  }
+
+  useEffect(() => {
+    searchData || selectedCategory ? setClearAllowed(true) : setClearAllowed(false)
+    updateProducts(searchData, makeSnakeCase(selectedCategory))
+  }, [searchData, selectedCategory])
+
+  const clearSearch = () => {
+    setSearchData('')
+    setSelectedCategory(null)
+  }
 
  return (
   <nav>
-    <img src={logo} alt="Makeup 360 logo"/>
-    {!loading && <Form products={products} updateProducts={updateProducts}/>}
+    <div className='top-nav'>
+      <img src={logo} alt="Makeup 360 logo"/>
+      {!loading && <input className='search' type='search' placeholder='Search for brand...' value={searchData} onChange={(e) => setSearchData(e.target.value)}/>}
+    </div>
+    {!loading && <CategoryContainer selectedCategory={selectedCategory} updateCategory={updateCategory} />}
+    {clearAllowed && <button onClick={clearSearch}>Clear</button>}
   </nav>
  )
 }

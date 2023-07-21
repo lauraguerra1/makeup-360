@@ -1,8 +1,27 @@
 nav {
   height: 200px;
   border-bottom: 1px solid black;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
 }
 
-nav > img {
+.top-nav > img {
   height: 100px
+}
+.top-nav {
+  display: flex; 
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.search {
+  width: 25%;
+  height: 30%;
+  border: 2px solid #d1b296;
+  border-radius: 15px;
 }

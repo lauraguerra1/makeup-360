@@ -16,11 +16,12 @@ nav {
   display: flex; 
   justify-content: space-between;
   align-items: center;
-  width: 100%;
+  width: 90%;
+  padding-right: 5%;
 }
 
 .search {
-  width: 25%;
+  width: 30%;
   height: 30%;
   border: 2px solid #d1b296;
   border-radius: 15px;

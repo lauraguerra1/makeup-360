@@ -39,3 +39,12 @@
 .category-container::-webkit-scrollbar-thumb {
   background: pink;
 } */
+
+@media screen and (min-width: 1400px) {
+  .left-scroll-btn, .right-scroll-btn {
+    display:none
+  }
+  .category-container {
+    max-width: 100%;
+  }
+}

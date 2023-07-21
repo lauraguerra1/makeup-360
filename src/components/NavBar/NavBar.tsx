@@ -1,9 +1,11 @@
 import './NavBar.css'
 import logo from '../../images/logo.png'
+import favorite from '../../images/favorite.png'
 import { Product } from '../../apiTypes'
 import { useEffect, useState } from 'react'
 import CategoryContainer from '../CategoryContainer/CategoryContainer'
 import { makeSnakeCase } from '../../helpers'
+import { Link } from 'react-router-dom'
 
 interface NavBarProps {
   loading: boolean
@@ -37,6 +39,7 @@ const NavBar = ({loading, products, updateProducts}: NavBarProps) => {
     <div className='top-nav'>
       <img src={logo} alt="Makeup 360 logo"/>
       {!loading && <input className='search' type='search' placeholder='Search for brand...' value={searchData} onChange={(e) => setSearchData(e.target.value)}/>}
+      <Link to='/favorites'><img src={favorite} alt='view favorites' /></Link>
     </div>
     {!loading && <CategoryContainer selectedCategory={selectedCategory} updateCategory={updateCategory} />}
     {clearAllowed && <button onClick={clearSearch}>Clear</button>}

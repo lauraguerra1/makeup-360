@@ -15,10 +15,11 @@ function App() {
   
 
   const updateFilteredProducts = (brand: string, type: string | null) => {
+    !type && !brand ? setFilteredProducts([]) : 
     setFilteredProducts(allProducts.filter(product => {
-      const brandMatch = product.brand === brand;
+      const brandMatch = product.brand?.includes(brand.toLowerCase())
       const typeMatch = product.product_type === type;
-      return type ? brandMatch && typeMatch : brandMatch
+      return type? brandMatch && typeMatch : brandMatch
     }))
   }
 

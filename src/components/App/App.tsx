@@ -23,6 +23,12 @@ function App() {
     }))
   }
 
+  const findSingleProduct = (id: number) => {
+    allProducts.find(product => {
+      // product.id === 
+    })
+  }
+
   useEffect(() => {
     const apiCall = async () => {
       setLoading(true)

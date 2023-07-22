@@ -1,5 +1,6 @@
 import { useEffect } from "react"
 import { Product } from "../../apiTypes"
+import ProductCard from "../ProductCard/ProductCard"
 interface PCProps {
   filteredProducts: Product[]
 }
@@ -12,9 +13,20 @@ const ProductContainer = ({filteredProducts}: PCProps) => {
 // will get a prop coming from App with all single products 
 //maps over them to return a bunch of <ProductCard /> 's 
 
+const productCards = filteredProducts.map(product => {
+  return (
+    <ProductCard 
+      image={product.api_featured_image}
+      brand={product.brand}
+      name={product.name}
+      tags={product.tag_list}
+    />
+  )
+});
+
 // if the array of 'filtered /all products' is empty display featured items 
 //if featured items then add an H2 for FEATURED 
-  return (<p>This will either be fatured products or all products </p>)
+  return (<p className="products-space">{productCards}This will either be fatured products or all products </p>)
 }
 
 export default ProductContainer

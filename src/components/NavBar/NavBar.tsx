@@ -38,7 +38,7 @@ const NavBar = ({loading, products, updateProducts}: NavBarProps) => {
  return (
   <nav>
     <div className='top-nav'>
-      <img src={logo} alt="Makeup 360 logo"/>
+    <Link className='logo-link' to='/'><img src={logo} alt='Makeup 360 logo' /></Link>
       <div className='small-screen-flex'>
         {!loading && <input className='search' type='search' placeholder='Search for a brand...' value={searchData} onChange={(e) => setSearchData(e.target.value)}/>}
         <Link className='favorites' to='/favorites'><img src={favorite} alt='view favorites link' /></Link>

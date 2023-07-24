@@ -33,7 +33,7 @@ const productCards = filteredProducts.map(product => {
   return (
   <p className="product-wrapper">
     This will either be fatured products or all products 
-    {searching && productCards}
+    {productCards}
   </p>
   )
 }

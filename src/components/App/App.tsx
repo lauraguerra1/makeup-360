@@ -6,6 +6,7 @@ import ProductContainer from '../ProductContainer/ProductContainer';
 import { Route, Routes } from 'react-router-dom';
 import { getAllProducts } from '../../apiCalls';
 import { Product } from '../../apiTypes';
+import ProductDetail from '../ProductDetail/ProductDetail'
 
 const App = () => {
   const [allProducts, setAllProducts] = useState<Product[]>([])
@@ -23,12 +24,6 @@ const App = () => {
       return type? brandMatch && typeMatch : brandMatch
     }))
     setSearching(true)
-  }
-
-  const findSingleProduct = (id: number) => {
-    allProducts.find(product => {
-      // product.id === 
-    })
   }
 
   useEffect(() => {
@@ -67,7 +62,7 @@ const App = () => {
         : 
         <Routes>
           <Route path='/' element={<ProductContainer searching={searching}filteredProducts={filteredProducts}/>} />
-          <Route path='/product/:id' element={<></>} />
+          <Route path='/product/:id' element={<ProductDetail allProducts={allProducts}/>} />
         </Routes>
       }
     </main>

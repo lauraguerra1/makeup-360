@@ -1,4 +1,5 @@
 import { Product } from '../../apiTypes';
+import './ProductCard.css'
 
 type ProductCardProps = {
   image: string
@@ -12,10 +13,12 @@ const ProductCard = (props: ProductCardProps) => {
   //this is just on little card 
   return (
     <div className='product-card'>
-      <img src={props.image} className='product-image'/>
+      <div className='image-container'>
+        <img src={props.image} className='product-image'/>
+      </div>
       <h2 className='product-name'>{props.name}</h2>
       <h3 className='product-brand'>{props.brand}</h3>
-      <p className='product-tags'>{props.tags}</p>
+      <p className='product-tags'>tags: {props.tags}</p>
     </div>
   )
 }

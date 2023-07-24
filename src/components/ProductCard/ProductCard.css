@@ -1,0 +1,10 @@
+.image-container {
+  height: 20vh;
+  width: 20vw;
+
+}
+
+.product-image {
+  height: 100%;
+  object-fit: contain
+}

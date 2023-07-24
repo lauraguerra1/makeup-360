@@ -11,6 +11,7 @@ function App() {
   const [allProducts, setAllProducts] = useState<Product[]>([])
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([])
   const [loading, setLoading] = useState(false)
+  const [searching, setSearching] = useState(false)
   const [error, setError] = useState<Error | string | unknown>('')
   
 
@@ -21,6 +22,7 @@ function App() {
       const typeMatch = product.product_type === type;
       return type? brandMatch && typeMatch : brandMatch
     }))
+    setSearching(true)
   }
 
   const findSingleProduct = (id: number) => {

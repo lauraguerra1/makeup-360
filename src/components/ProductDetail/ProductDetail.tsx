@@ -10,8 +10,6 @@ const ProductDetail = ({allProducts}: ProductDetailProps) => {
   
   const chosenProductID = useParams().id
 
-  console.log(typeof chosenProductID, 'chosen prod variable, this is a string right now')
-
   const findSingleProduct = (chosenProductID: any) => {
     return allProducts.find(product => {
       return product.id === parseInt(chosenProductID)
@@ -20,11 +18,17 @@ const ProductDetail = ({allProducts}: ProductDetailProps) => {
 
   const chosenProductDetails = findSingleProduct(chosenProductID)
 
-  console.log(chosenProductDetails)
-
   return (
     <div className='product-detail-card'>
-      <div></div>
+      {chosenProductDetails ? (
+        <div>
+          <img src={chosenProductDetails.api_featured_image} className='product-image' id={chosenProductDetails.id.toString()}/>
+          <h1>{chosenProductDetails.name}</h1>
+          <p>Price: ${chosenProductDetails.price}</p>
+        </div>
+      ) : (
+        <p>Product not found</p>
+      )}
     </div>
   )
 }

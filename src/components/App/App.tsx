@@ -15,7 +15,6 @@ const App = () => {
   const [searching, setSearching] = useState(false)
   const [error, setError] = useState<Error | string | unknown>('')
   
-
   const updateFilteredProducts = (brand: string, type: string | null) => {
     !type && !brand ? setFilteredProducts([]) : 
     setFilteredProducts(allProducts.filter(product => {

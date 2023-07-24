@@ -7,7 +7,7 @@ import { Route, Routes } from 'react-router-dom';
 import { getAllProducts } from '../../apiCalls';
 import { Product } from '../../apiTypes';
 
-function App() {
+const App = () => {
   const [allProducts, setAllProducts] = useState<Product[]>([])
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([])
   const [loading, setLoading] = useState(false)

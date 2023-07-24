@@ -2,7 +2,7 @@ import { Product } from '../../apiTypes';
 import './ProductCard.css'
 import { Link } from 'react-router-dom';
 
-type ProductCardProps = {
+interface ProductCardProps {
   image: string
   brand: string
   name: string
@@ -13,7 +13,7 @@ type ProductCardProps = {
 const ProductCard = (props: ProductCardProps) => {
   //generate one product with image, Brand, tags, and Name 
   //this is just on little card 
-  console.log(typeof props.id, 'this should be a number in theory lol')
+
   return (
     <div className='product-card'>
       <div className='image-container'>

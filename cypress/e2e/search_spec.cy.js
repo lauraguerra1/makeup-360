@@ -26,6 +26,15 @@ describe('search and filter spec', () => {
 
   })
 
+  it('should be able to search for a product by brand', () => {
+    cy.wait('@getProducts').then((interception) => {
+      cy.search('colourpop')
+        .get('.product-card').should('have.length', 4)
+        .assertProduct('first', 'Lippie Pencil', 'colourpop', 'cruelty freeVegan')
+        .assertProduct('last', 'No Filter Foundation', 'colourpop', 'cruelty freeVegan')
+    })
+   
+  })
 
 
 

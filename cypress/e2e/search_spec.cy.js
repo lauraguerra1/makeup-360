@@ -47,6 +47,26 @@ describe('search and filter spec', () => {
     })
   })
 
+  it('should search, then filter based on remaining results', () => {
+    cy.wait('@getProducts').then((interception) => {
+      cy.search('colourpop')
+      .get('.product-card').should('have.length', 4)
+      .assertProduct('first', 'Lippie Pencil', 'colourpop', 'cruelty freeVegan')
+      .filterBy('Foundation')
+      .get('.product-card').should('have.length', 1)
+      .assertProduct('first', 'No Filter Foundation', 'colourpop', 'cruelty freeVegan')
+    })
+  })
 
+  it('should filter, then search based on remaining results, then clear search', () => {
+    cy.wait('@getProducts').then((interception) => {
+     cy.filterBy('Lipstick') 
+       .get('.product-card').should('have.length', 3)
+       .assertProduct('first', 'Blotted Lip', 'colourpop', 'cruelty freeVegan')
+       .assertProduct('last', 'Lipstick', 'boosh', 'Chemical FreeOrganic')
+       .get('.clear-search').click()
+       .get('.product-card').should('have.length', 0)
+    })
+  })
 
 })

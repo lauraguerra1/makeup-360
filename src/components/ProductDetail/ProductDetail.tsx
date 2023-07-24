@@ -22,7 +22,7 @@ const ProductDetail = ({allProducts}: ProductDetailProps) => {
     <div className='product-detail-card'>
       {chosenProductDetails ? (
         <div>
-          <img src={chosenProductDetails.api_featured_image} className='product-image' id={chosenProductDetails.id.toString()}/>
+          <img src={chosenProductDetails.api_featured_image} className='product-image' id={chosenProductDetails.id.toString()} alt={chosenProductDetails.name}/>
           <h1>{chosenProductDetails.name}</h1>
           <p>Price: ${chosenProductDetails.price}</p>
         </div>

@@ -18,7 +18,7 @@ const ProductCard = (props: ProductCardProps) => {
     <div className='product-card'>
       <div className='image-container'>
         <Link to={`/product/${props.id}`} >
-          <img src={props.image} className='product-image' id={props.id.toString()}/>
+          <img src={props.image} className='product-image' id={props.id.toString()} alt={props.name}/>
         </Link>
       </div>
       <h2 className='product-name'>{props.name}</h2>

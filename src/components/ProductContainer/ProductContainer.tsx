@@ -16,12 +16,14 @@ const ProductContainer = ({filteredProducts, searching}: PCProps) => {
 //maps over them to return a bunch of <ProductCard /> 's 
 
 const productCards = filteredProducts.map(product => {
+  console.log(typeof product.id, 'wtf is this a number or not omg')
   return (
     <ProductCard 
       image={product.api_featured_image}
       brand={product.brand}
       name={product.name}
       tags={product.tag_list}
+      id={product.id}
     />
   )
 });

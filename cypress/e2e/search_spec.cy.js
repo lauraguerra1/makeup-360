@@ -33,7 +33,18 @@ describe('search and filter spec', () => {
         .assertProduct('first', 'Lippie Pencil', 'colourpop', 'cruelty freeVegan')
         .assertProduct('last', 'No Filter Foundation', 'colourpop', 'cruelty freeVegan')
     })
-   
+  })
+
+
+  it('should filter products by type', () => {
+    cy.wait('@getProducts').then((interception) => {
+      cy.filterBy('Foundation')
+        .get('.filled').should('have.length', 1).contains('Foundation')
+        .get('.empty').should('have.length', 9)
+        .get('.product-card').should('have.length', 3)
+        .assertProduct('first', 'No Filter Foundation', 'colourpop', 'cruelty freeVegan')
+        .assertProduct('last', 'Coverage Foundation', 'deciem', 'Vegan')
+    })
   })
 
 

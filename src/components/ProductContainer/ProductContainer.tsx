@@ -3,13 +3,14 @@ import { Product } from "../../apiTypes"
 import ProductCard from "../ProductCard/ProductCard"
 interface PCProps {
   filteredProducts: Product[]
+  searching: boolean
 }
 
-const ProductContainer = ({filteredProducts}: PCProps) => {
+const ProductContainer = ({filteredProducts, searching}: PCProps) => {
   useEffect(() => {
     console.log('filtered', filteredProducts)
   }, [filteredProducts])
-  
+
 //this will contain all the little products or the featured items
 // will get a prop coming from App with all single products 
 //maps over them to return a bunch of <ProductCard /> 's 
@@ -30,7 +31,7 @@ const productCards = filteredProducts.map(product => {
   return (
   <p className="product-wrapper">
     This will either be fatured products or all products 
-    {productCards}
+    {searching && productCards}
   </p>
   )
 }

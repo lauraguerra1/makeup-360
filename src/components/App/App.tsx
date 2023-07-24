@@ -66,7 +66,7 @@ function App() {
         </section>
         : 
         <Routes>
-          <Route path='/' element={<ProductContainer filteredProducts={filteredProducts}/>} />
+          <Route path='/' element={<ProductContainer searching={searching}filteredProducts={filteredProducts}/>} />
           <Route path='/product/:id' element={<></>} />
         </Routes>
       }

@@ -30,13 +30,18 @@ const ProductDetail = ({allProducts}: ProductDetailProps) => {
             </div>
             <aside className='details-aside'>
             
-              <h1>{chosenProductDetails.name}</h1>
-              
+              <h3>{chosenProductDetails.brand}</h3>
+              <h4>{chosenProductDetails.name}</h4>
+
+              <p>{}</p>
+
               {chosenProductDetails.price !== '0.0' ? (
                 <p className='product-price'>Price: ${chosenProductDetails.price}</p>
               ) : null }
 
+              {chosenProductDetails.description ? (
               <p className='product-description'>{chosenProductDetails.description}</p>
+              ) : <p>Sorry, no product details currently available.</p>}
               
               {chosenProductDetails.rating !== null ? (
               <p className='product-rating'>Rating: {chosenProductDetails.rating}</p>

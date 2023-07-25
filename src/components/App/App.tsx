@@ -26,12 +26,15 @@ const App = () => {
     setSearching(true)
   }
 
+  const updateFeaturedProducts = (newProducts: Product[]) => {
+    setFeaturedProducts(newProducts)
+  }
+
   useEffect(() => {
     const apiCall = async () => {
       setLoading(true)
       try {
         setAllProducts(await getAllProducts())
-        setFeaturedProducts(await getAllProducts())
         setLoading(false)
       }catch(error) {
         setError(error)
@@ -51,7 +54,7 @@ const App = () => {
         </section>
         : 
         <Routes>
-          <Route path='/' element={<ProductContainer searching={searching}filteredProducts={filteredProducts} featuredProducts={featuredProducts} />} />
+          <Route path='/' element={<ProductContainer searching={searching}filteredProducts={filteredProducts} featuredProducts={featuredProducts} allProducts={allProducts} updateFeaturedProducts={updateFeaturedProducts} />} />
           <Route path='/product/:id' element={<ProductDetail allProducts={allProducts}/>} />
         </Routes>
       }

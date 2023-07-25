@@ -39,17 +39,6 @@ const App = () => {
     apiCall()
   }, [])
 
-  // useEffect(() => {
-  //   let types = allProducts.reduce((acc: string[], curr) => {
-  //     acc.push(curr.product_type);
-  //     return acc;
-  //   }, []);
-
-  //   console.log(new Set([...types]))
-    
-
-  // }, [allProducts])
-
   return (
     <main>
       <NavBar loading={loading} products={allProducts} updateProducts={updateFilteredProducts}/>

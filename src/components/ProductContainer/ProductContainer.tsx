@@ -8,7 +8,7 @@ interface PCProps {
 
 const ProductContainer = ({filteredProducts, searching}: PCProps) => {
   useEffect(() => {
-    console.log('filtered', filteredProducts)
+
   }, [filteredProducts])
 
 //this will contain all the little products or the featured items

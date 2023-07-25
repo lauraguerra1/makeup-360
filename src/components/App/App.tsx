@@ -11,6 +11,7 @@ import ProductDetail from '../ProductDetail/ProductDetail'
 const App = () => {
   const [allProducts, setAllProducts] = useState<Product[]>([])
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([])
+  const [featuredProducts, setFeaturedProducts] = useState<Product[]>([])
   const [loading, setLoading] = useState(false)
   const [searching, setSearching] = useState(false)
   const [error, setError] = useState<Error | string | unknown>('')
@@ -30,6 +31,7 @@ const App = () => {
       setLoading(true)
       try {
         setAllProducts(await getAllProducts())
+        setFeaturedProducts(await getAllProducts())
         setLoading(false)
       }catch(error) {
         setError(error)
@@ -49,7 +51,7 @@ const App = () => {
         </section>
         : 
         <Routes>
-          <Route path='/' element={<ProductContainer searching={searching}filteredProducts={filteredProducts}/>} />
+          <Route path='/' element={<ProductContainer searching={searching}filteredProducts={filteredProducts} featuredProducts={featuredProducts} />} />
           <Route path='/product/:id' element={<ProductDetail allProducts={allProducts}/>} />
         </Routes>
       }

@@ -23,7 +23,11 @@ const ProductCard = (props: ProductCardProps) => {
       </div>
       <h2 className='product-name'>{props.name}</h2>
       <h3 className='product-brand'>{props.brand}</h3>
-      <p className='product-tags'>tags: {props.tags}</p>
+
+      {props.tags.length > 0 ? (
+        <p className='product-tags'>tags: {props.tags}</p>
+        ) : null }
+
     </div>
   )
 }

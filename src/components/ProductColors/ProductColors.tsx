@@ -1,5 +1,6 @@
 import React from 'react';
 import { ProductColor } from '../../apiTypes';
+import './ProductColors.css'
 
 interface ProductColorsProps {
   hexColors: ProductColor[];
@@ -17,7 +18,8 @@ const ProductColors = ({hexColors}: ProductColorsProps) => {
             backgroundColor: hexColor.hex_value,
             height: '30px',
             width: '30px',
-            borderRadius: '50%'
+            borderRadius: '50%',
+            margin: '.5%'
           }}
         ></div>
       ))}

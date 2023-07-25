@@ -35,7 +35,7 @@ const ProductDetail = ({allProducts}: ProductDetailProps) => {
               
             
               <h3>{chosenProductDetails.brand}</h3>
-              <h4>{chosenProductDetails.name}</h4>
+              <h4>{chosenProductDetails.name.replace('&trade;', '\u2122')}</h4>
 
               <ProductColors hexColors={chosenProductDetails.product_colors}/>
 

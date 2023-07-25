@@ -2,6 +2,7 @@ import { Product } from '../../apiTypes';
 import './ProductCard.css'
 import { Link } from 'react-router-dom';
 
+
 interface ProductCardProps {
   image: string
   brand: string

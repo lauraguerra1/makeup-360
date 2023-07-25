@@ -1,6 +1,7 @@
 import './ProductDetail.css'
 import { useParams, Link } from 'react-router-dom'
 import { Product } from '../../apiTypes';
+import ProductColors from '../ProductColors/ProductColors';
 
 interface ProductDetailProps {
   allProducts: Product[]
@@ -32,6 +33,8 @@ const ProductDetail = ({allProducts}: ProductDetailProps) => {
             
               <h3>{chosenProductDetails.brand}</h3>
               <h4>{chosenProductDetails.name}</h4>
+
+              <ProductColors hexColors={chosenProductDetails.product_colors}/>
 
               <p>{}</p>
 

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect} from "react"
 import { Product } from "../../apiTypes"
 import ProductCard from "../ProductCard/ProductCard"
 interface PCProps {
@@ -15,10 +15,6 @@ const ProductContainer = ({allProducts, updateFeaturedProducts, featuredProducts
       updateRandomProducts(allProducts)
     }
   }, [allProducts])
-
-//this will contain all the little products or the featured items
-// will get a prop coming from App with all single products 
-//maps over them to return a bunch of <ProductCard /> 's 
 
 const updateRandomProducts = (products: Product[]) => {
   let fiveStars = products.filter(product => product.rating === 5) 
@@ -51,10 +47,9 @@ const getProductCards = (products:Product[]):JSX.Element[]=> {
 const featuredProductCards = getProductCards(featuredProducts)
 const filteredProductCards = getProductCards(filteredProducts)
 
-// if the array of 'filtered /all products' is empty display featured items 
-//if featured items then add an H2 for FEATURED 
   return (
     <section className="product-wrapper">
+      {!filteredProducts.length && <h2>Featured Items</h2>}
       {filteredProducts.length ? filteredProductCards : featuredProductCards}
     </section>
   )

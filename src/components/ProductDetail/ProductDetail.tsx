@@ -29,10 +29,19 @@ const ProductDetail = ({allProducts}: ProductDetailProps) => {
               </Link>
             </div>
             <aside className='details-aside'>
+            
               <h1>{chosenProductDetails.name}</h1>
-              <p className='product-price'>Price: ${chosenProductDetails.price}</p><br />
-              <p className='product-description'>Description: {chosenProductDetails.description}</p><br />
-              <p className='product-rating'>Rating: {chosenProductDetails.rating}</p><br />
+              
+              {chosenProductDetails.price !== '0.0' ? (
+                <p className='product-price'>Price: ${chosenProductDetails.price}</p>
+              ) : null }
+
+              <p className='product-description'>{chosenProductDetails.description}</p>
+              
+              {chosenProductDetails.rating !== null ? (
+              <p className='product-rating'>Rating: {chosenProductDetails.rating}</p>
+              ) : null}
+            
             </aside>
 
         </div>

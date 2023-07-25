@@ -25,7 +25,7 @@ const ProductCard = (props: ProductCardProps) => {
       <h3 className='product-brand'>{props.brand}</h3>
 
       {props.tags.length > 0 ? (
-        <p className='product-tags'>tags: {props.tags}</p>
+        <p className='product-tags'>tags: {props.tags.join(', ')}</p>
         ) : null }
 
     </div>

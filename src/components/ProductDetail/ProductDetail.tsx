@@ -38,18 +38,20 @@ const ProductDetail = ({allProducts}: ProductDetailProps) => {
               <ProductColors hexColors={chosenProductDetails.product_colors}/>
 
               {chosenProductDetails.price !== '0.0' ? (
-                <p className='product-price'>Price: ${chosenProductDetails.price}</p>
+                <div className='product-price'>Price: ${chosenProductDetails.price}</div>
                 ) : null }
 
               {chosenProductDetails.description ? (
-                <p className='product-description'>{chosenProductDetails.description.replace(/<[^>]*>/g, '')}</p>
+                <div className='product-description'>{chosenProductDetails.description.replace(/<[^>]*>/g, '')}</div>
                 ) : <p>Sorry, no product details currently available.</p>}
               
               {chosenProductDetails.rating !== null ? (
-                <p className='product-rating'>Rating: {chosenProductDetails.rating}</p>
+                <div className='product-rating'>Rating: {chosenProductDetails.rating}</div>
                 ) : null}
-              <div>
-                <button className='website-link-button'>View On Product Website</button>
+              <div className='buttons-container'>
+                <Link to={chosenProductDetails.product_link} > 
+                  <button className='website-link-button'>View On Product Website</button>
+                </Link>
                 <img src={favorite} alt='add to favorites' className='add-product-to-favorites'/>
               </div>
 
@@ -57,7 +59,7 @@ const ProductDetail = ({allProducts}: ProductDetailProps) => {
 
         </div>
       ) : (
-        <p>Product not found</p>
+        <div>Product not found</div>
       )}
     </div>
   )

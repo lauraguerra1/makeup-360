@@ -32,8 +32,12 @@ const ProductColors = () => {
         <div
           key={hexColor.hex_value}
           className="circle"
-          style={{ backgroundColor: hexColor.hex_value,
-            height: '100px', width: '100px', borderRadius: '50%' }}
+          style={{ 
+            backgroundColor: hexColor.hex_value,
+            height: '30px',
+            width: '30px',
+            borderRadius: '50%'
+          }}
         ></div>
       ))}
     </div>

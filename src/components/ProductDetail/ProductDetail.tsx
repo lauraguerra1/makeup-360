@@ -19,7 +19,7 @@ const ProductDetail = ({allProducts}: ProductDetailProps) => {
   }
 
   const chosenProductDetails = findSingleProduct(chosenProductID)
-  console.log(chosenProductDetails?.product_colors)
+
   return (
     <div className='product-detail-card'>
       {chosenProductDetails ? (
@@ -31,12 +31,11 @@ const ProductDetail = ({allProducts}: ProductDetailProps) => {
               </Link>
             </div>
             <aside className='details-aside'>
-              <ProductColors />
             
               <h3>{chosenProductDetails.brand}</h3>
               <h4>{chosenProductDetails.name}</h4>
 
-
+              Available Colors: <ProductColors />
               {/* <ProductColors hexColors={chosenProductDetails.product_colors}/> */}
 
               {chosenProductDetails.price !== '0.0' ? (
@@ -44,7 +43,7 @@ const ProductDetail = ({allProducts}: ProductDetailProps) => {
               ) : null }
 
               {chosenProductDetails.description ? (
-              <p className='product-description'>{chosenProductDetails.description}</p>
+              <p className='product-description'>{chosenProductDetails.description.replace(/<[^>]*>/g, '')}</p>
               ) : <p>Sorry, no product details currently available.</p>}
               
               {chosenProductDetails.rating !== null ? (

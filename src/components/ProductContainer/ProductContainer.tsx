@@ -14,7 +14,7 @@ const ProductContainer = ({allProducts, updateFeaturedProducts, featuredProducts
     if(allProducts.length) {
       updateRandomProducts(allProducts)
     }
-  }, [allProducts])
+  }, [])
 
 const updateRandomProducts = (products: Product[]) => {
   let fiveStars = products.filter(product => product.rating === 5) 

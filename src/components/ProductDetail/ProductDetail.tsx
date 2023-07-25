@@ -35,7 +35,6 @@ const ProductDetail = ({allProducts}: ProductDetailProps) => {
               <h3>{chosenProductDetails.brand}</h3>
               <h4>{chosenProductDetails.name}</h4>
 
-              {/* Available Colors: <ProductColors /> */}
               <ProductColors hexColors={chosenProductDetails.product_colors}/>
 
               {chosenProductDetails.price !== '0.0' ? (

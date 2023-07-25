@@ -5,9 +5,9 @@ import './ProductColors.css'
 interface ProductColorsProps {
   hexColors: ProductColor[];
 }
-
 const ProductColors = ({hexColors}: ProductColorsProps) => {
-
+  console.log(hexColors)
+  
   return (
     <div className="circle-container">
       {hexColors.map((hexColor) => (
@@ -15,7 +15,7 @@ const ProductColors = ({hexColors}: ProductColorsProps) => {
           key={hexColor.hex_value}
           className="circle"
           style={{
-            backgroundColor: hexColor.hex_value,
+            backgroundColor: hexColor.hex_value.split(',')[0],
             height: '30px',
             width: '30px',
             borderRadius: '50%',

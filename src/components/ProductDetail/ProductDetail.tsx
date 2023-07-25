@@ -20,6 +20,8 @@ const ProductDetail = ({allProducts}: ProductDetailProps) => {
 
   const chosenProductDetails = findSingleProduct(chosenProductID)
 
+  console.log(chosenProductDetails)
+
   return (
     <div className='product-detail-card'>
       {chosenProductDetails ? (

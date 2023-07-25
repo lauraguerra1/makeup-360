@@ -9,7 +9,7 @@ interface ProductDetailProps {
 }
 
 const ProductDetail = ({allProducts}: ProductDetailProps) => {
-  
+
   const chosenProductID = useParams().id
 
   const findSingleProduct = (chosenProductID: any) => {
@@ -24,13 +24,13 @@ const ProductDetail = ({allProducts}: ProductDetailProps) => {
     <div className='product-detail-card'>
       {chosenProductDetails ? (
         <div className='product-detail-container'>
-
             <div className='image-container'>
               <Link to={chosenProductDetails.product_link} >
                 <img src={chosenProductDetails.api_featured_image} className='product-image' id={chosenProductDetails.id.toString()} alt={chosenProductDetails.name}/>
               </Link>
             </div>
             <aside className='details-aside'>
+              
             
               <h3>{chosenProductDetails.brand}</h3>
               <h4>{chosenProductDetails.name}</h4>
@@ -39,16 +39,20 @@ const ProductDetail = ({allProducts}: ProductDetailProps) => {
 
               {chosenProductDetails.price !== '0.0' ? (
                 <p className='product-price'>Price: ${chosenProductDetails.price}</p>
-              ) : null }
+                ) : null }
 
               {chosenProductDetails.description ? (
-              <p className='product-description'>{chosenProductDetails.description.replace(/<[^>]*>/g, '')}</p>
-              ) : <p>Sorry, no product details currently available.</p>}
+                <p className='product-description'>{chosenProductDetails.description.replace(/<[^>]*>/g, '')}</p>
+                ) : <p>Sorry, no product details currently available.</p>}
               
               {chosenProductDetails.rating !== null ? (
-              <p className='product-rating'>Rating: {chosenProductDetails.rating}</p>
-              ) : null}
-            
+                <p className='product-rating'>Rating: {chosenProductDetails.rating}</p>
+                ) : null}
+              <div>
+                <button className='website-link-button'>View On Product Website</button>
+                <img src={favorite} alt='add to favorites' className='add-product-to-favorites'/>
+              </div>
+
             </aside>
 
         </div>

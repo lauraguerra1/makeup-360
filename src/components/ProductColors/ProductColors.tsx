@@ -19,7 +19,7 @@ const ProductColors = ({hexColors}: ProductColorsProps) => {
             height: '30px',
             width: '30px',
             borderRadius: '50%',
-            margin: '.5%'
+            margin: '0.5%'
           }}
         ></div>
       ))}

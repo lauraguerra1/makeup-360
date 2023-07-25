@@ -40,7 +40,7 @@ const ProductDetail = ({allProducts}: ProductDetailProps) => {
               <ProductColors hexColors={chosenProductDetails.product_colors}/>
 
               {chosenProductDetails.price !== '0.0' ? (
-                <div className='product-price'>Price: ${chosenProductDetails.price}</div>
+                <div className='product-price'>Price: ${parseInt(chosenProductDetails.price).toFixed(2)}</div>
                 ) : null }
 
               {chosenProductDetails.description ? (

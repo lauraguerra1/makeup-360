@@ -1,6 +1,6 @@
 export type ProductColor = {
-  hex_code: string;
-  name: string;
+  hex_value: string;
+  colour_name: string;
 }
 
 export type Product = {

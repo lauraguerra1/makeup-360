@@ -5,13 +5,17 @@
 }
 
 .product-image {
-  height: 40vh;
+  height: 50vh;
+  width: 60vw;
+}
+
+.image-container {
+  width: 40vw;
 }
 
 .product-detail-container {
   display: flex;
   align-items: center;
-  /* justify-content: center; */
 }
 
 .details-aside {
@@ -21,6 +25,19 @@
   width: 30vw;
 }
 
-.image-container {
-  width: 40vw;
+.buttons-container{
+  display: flex;
+  padding: 20px;
+}
+
+.website-link-button{
+  border-radius: 10px;
+  background-color:#e6beae;
+  border: none;
+  padding: 6px;
+}
+
+.add-product-to-favorites{
+  height: 22px;
+  padding: 2px;
 }

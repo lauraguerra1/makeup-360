@@ -3,7 +3,7 @@ import { Product } from "../../apiTypes"
 import ProductCard from "../ProductCard/ProductCard"
 import './ProductContainer.css'
 interface PCProps {
-  allProducts: Product[]
+  allProducts: Product[],
   filteredProducts: Product[]
 }
 

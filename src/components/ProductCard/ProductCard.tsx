@@ -18,10 +18,8 @@ const ProductCard = (props: ProductCardProps) => {
           <img className='product-img' src={props.image} id={props.id.toString()} alt={props.name}/>
         </Link>
       </div>
-
       <h2 className='product-brand'>{props.brand}</h2>
-      <p className='product-name'>{props.name}</p>
-      <p className='product-tags'>tags: {props.tags}</p>
+      <p className='product-name'>{props.name.replace('&trade;', '\u2122')}</p>
       {props.tags.length ? (
         <p className='product-tags'>tags: {props.tags.join(', ')}</p>
         ) : null }

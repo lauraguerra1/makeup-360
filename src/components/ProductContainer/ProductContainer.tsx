@@ -50,7 +50,7 @@ const filteredProductCards = getProductCards(filteredProducts)
 
   return (
     <section className="product-container">
-      {!filteredProducts.length && <h2>Featured Items</h2>}
+      {!filteredProducts.length && <h2 className="featured-header">Featured Items</h2>}
       <div className="product-wrapper" >
         {filteredProducts.length ? filteredProductCards : featuredProductCards}
       </div>

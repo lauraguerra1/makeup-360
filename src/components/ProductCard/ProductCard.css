@@ -34,3 +34,11 @@
 .product-tags {
   margin: 0;
 }
+
+@media screen and (max-width: 520px) {
+  .product-card {
+    width: 100px;
+    font-size: 10px;
+    padding: 10px;
+  }
+}

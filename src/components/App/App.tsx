@@ -13,6 +13,7 @@ const App = () => {
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<Error | string | unknown>('')
+  const [savedProducts, setSavedProducts] = useState<Product[]>([])
   
   const updateFilteredProducts = (brand: string, type: string | null) => {
     !type && !brand ? setFilteredProducts([]) : 
@@ -21,6 +22,14 @@ const App = () => {
       const typeMatch = product.product_type === type;
       return type? brandMatch && typeMatch : brandMatch
     }))
+  }
+
+  const addToSavedProducts = (newProduct:Product) => {
+    setSavedProducts(previous=> [...previous, newProduct])
+  }
+
+  const removeFromSavedProducts = (product:Product) => {
+    setSavedProducts(previous => previous.filter(oldProduct => oldProduct.id !== product.id))
   }
 
   useEffect(() => {
@@ -36,7 +45,9 @@ const App = () => {
     }
     apiCall()
   }, [])
-
+  useEffect(() => {
+    console.log(savedProducts)
+  }, [savedProducts])
   return (
     <main>
       <NavBar loading={loading} products={allProducts} updateProducts={updateFilteredProducts}/>
@@ -48,7 +59,7 @@ const App = () => {
         : 
         <Routes>
           <Route path='/' element={<ProductContainer filteredProducts={filteredProducts} allProducts={allProducts} />} />
-          <Route path='/product/:id' element={<ProductDetail allProducts={allProducts}/>} />
+          <Route path='/product/:id' element={<ProductDetail allProducts={allProducts} savedProducts={savedProducts} addToSavedProducts={addToSavedProducts} removeFromSavedProducts={removeFromSavedProducts} />} />
         </Routes>
       }
     </main>

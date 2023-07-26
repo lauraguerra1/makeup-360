@@ -7,10 +7,11 @@ import { useLocation } from "react-router-dom"
 interface PCProps {
   allProducts: Product[],
   filteredProducts: Product[],
-  savedProducts: Product[]
+  savedProducts: Product[],
+  searching: boolean
 }
 
-const ProductContainer = ({allProducts, filteredProducts, savedProducts}: PCProps) => {
+const ProductContainer = ({allProducts, filteredProducts, savedProducts, searching}: PCProps) => {
   const location = useLocation().pathname
   const [featuredProducts, setFeaturedProducts] = useState<Product[]>([])
 
@@ -56,9 +57,10 @@ const ProductContainer = ({allProducts, filteredProducts, savedProducts}: PCProp
 
   return (
     <section className="product-container">
-      <h2 className="featured-header">{location.includes('favorites') ? "Saved Items" : filteredProducts.length ? 'Showing Search Results' : "Featured Items"}</h2>
+      <h2 className="featured-header">{location.includes('favorites') ? "Saved Items" : searching ? 'Showing Search Results' : "Featured Items"}</h2>
       <div className="product-wrapper" >
-        {filteredProducts.length ? filteredProductCards : location.includes('favorites') ? savedProductCards : featuredProductCards}
+        {searching ? filteredProductCards : location.includes('favorites') ? savedProductCards : featuredProductCards}
+        {searching && !filteredProducts.length && <p>No results for your search! Please try a different search!</p>}
       </div>
     </section>
   )

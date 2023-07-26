@@ -14,8 +14,11 @@ const App = () => {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<Error | string | unknown>('')
   const [savedProducts, setSavedProducts] = useState<Product[]>([])
+  const [searching, setSearching] = useState(false)
 
   console.log(filteredProducts)
+
+  const updateSearching = (boolean: boolean) => setSearching(boolean)
   
   const updateProducts = (products:Product[], brand: string, type: string | null) => {
     //accept an argument for what to filter off of replacing 'allProducts'
@@ -26,6 +29,7 @@ const App = () => {
       const typeMatch = product.product_type === type;
       return type? brandMatch && typeMatch : brandMatch
     }))
+    setSearching(true)
   }
 
   const addToSavedProducts = (newProduct:Product) => {
@@ -53,7 +57,7 @@ const App = () => {
   return (
     <main>
       //in nav add a condition for if the location is favorites to search based off faves only
-      <NavBar loading={loading} allProducts={allProducts} savedProducts={savedProducts} updateProducts={updateProducts}/>
+      <NavBar loading={loading} updateSearching={updateSearching} allProducts={allProducts} savedProducts={savedProducts} updateProducts={updateProducts}/>
       {loading ? 
         <section className='loading-container'>
           <img className='loading' src={logo} alt='Makeup 360 spinning logo' />
@@ -61,10 +65,10 @@ const App = () => {
         </section>
         : 
         <Routes>
-          <Route path='/' element={<ProductContainer filteredProducts={filteredProducts} allProducts={allProducts} savedProducts={savedProducts}/>} />
+          <Route path='/' element={<ProductContainer filteredProducts={filteredProducts} allProducts={allProducts} savedProducts={savedProducts} searching={searching}/>} />
           <Route path='/product/:id' element={<ProductDetail allProducts={allProducts} savedProducts={savedProducts} addToSavedProducts={addToSavedProducts} removeFromSavedProducts={removeFromSavedProducts} />} />
           // pass in other props and add logic for if we are on faves
-          <Route path='/favorites' element={<ProductContainer filteredProducts={filteredProducts} allProducts={allProducts} savedProducts={savedProducts}/>}/>
+          <Route path='/favorites' element={<ProductContainer filteredProducts={filteredProducts} allProducts={allProducts} savedProducts={savedProducts} searching={searching}/>}/>
         </Routes>
       }
     </main>

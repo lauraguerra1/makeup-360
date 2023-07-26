@@ -26,9 +26,9 @@
 }
 
 .buttons-container{
-  /* border: solid pink; */
   display: flex;
   padding: 20px;
+  /* border: solid pink; */
 }
 
 .website-link-button{

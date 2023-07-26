@@ -30,8 +30,8 @@ describe('search and filter spec', () => {
     cy.wait('@getProducts').then((interception) => {
       cy.search('colourpop')
         .get('.product-card').should('have.length', 4)
-        .assertProduct('first', 'Lippie Pencil', 'colourpop', 'cruelty freeVegan')
-        .assertProduct('last', 'No Filter Foundation', 'colourpop', 'cruelty freeVegan')
+        .assertProduct('first', 'Lippie Pencil', 'colourpop', 'cruelty free, Vegan')
+        .assertProduct('last', 'No Filter Foundation', 'colourpop', 'cruelty free, Vegan')
     })
   })
 
@@ -42,7 +42,7 @@ describe('search and filter spec', () => {
         .get('.filled').should('have.length', 1).contains('Foundation')
         .get('.empty').should('have.length', 9)
         .get('.product-card').should('have.length', 3)
-        .assertProduct('first', 'No Filter Foundation', 'colourpop', 'cruelty freeVegan')
+        .assertProduct('first', 'No Filter Foundation', 'colourpop', 'cruelty free, Vegan')
         .assertProduct('last', 'Coverage Foundation', 'deciem', 'Vegan')
     })
   })
@@ -51,10 +51,10 @@ describe('search and filter spec', () => {
     cy.wait('@getProducts').then((interception) => {
       cy.search('colourpop')
       .get('.product-card').should('have.length', 4)
-      .assertProduct('first', 'Lippie Pencil', 'colourpop', 'cruelty freeVegan')
+      .assertProduct('first', 'Lippie Pencil', 'colourpop', 'cruelty free, Vegan')
       .filterBy('Foundation')
       .get('.product-card').should('have.length', 1)
-      .assertProduct('first', 'No Filter Foundation', 'colourpop', 'cruelty freeVegan')
+      .assertProduct('first', 'No Filter Foundation', 'colourpop', 'cruelty free, Vegan')
     })
   })
 
@@ -62,8 +62,8 @@ describe('search and filter spec', () => {
     cy.wait('@getProducts').then((interception) => {
      cy.filterBy('Lipstick') 
        .get('.product-card').should('have.length', 3)
-       .assertProduct('first', 'Blotted Lip', 'colourpop', 'cruelty freeVegan')
-       .assertProduct('last', 'Lipstick', 'boosh', 'Chemical FreeOrganic')
+       .assertProduct('first', 'Blotted Lip', 'colourpop', 'cruelty free, Vegan')
+       .assertProduct('last', 'Lipstick', 'boosh', 'Chemical Free, Organic')
        .get('.clear-search').click()
        .get('.product-card').should('have.length', 0)
     })

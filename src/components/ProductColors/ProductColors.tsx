@@ -6,7 +6,6 @@ interface ProductColorsProps {
   hexColors: ProductColor[];
 }
 const ProductColors = ({hexColors}: ProductColorsProps) => {
-  console.log(hexColors)
   
   return (
     <div className="circle-container">

@@ -23,13 +23,17 @@ const App = () => {
   const updateProducts = (products:Product[], brand: string, type: string | null) => {
     //accept an argument for what to filter off of replacing 'allProducts'
     // coming in either 'allProducts' or 'savedProducts'
-    !type && !brand ? setFilteredProducts([]) : 
-    setFilteredProducts(products.filter(product => {
-      const brandMatch = product.brand?.includes(brand.toLowerCase())
-      const typeMatch = product.product_type === type;
-      return type? brandMatch && typeMatch : brandMatch
-    }))
-    setSearching(true)
+    if(!type && !brand) {
+      setFilteredProducts([])
+      setSearching(false)
+    } else {
+      setFilteredProducts(products.filter(product => {
+        const brandMatch = product.brand?.includes(brand.toLowerCase())
+        const typeMatch = product.product_type === type;
+        return type? brandMatch && typeMatch : brandMatch
+      }))
+      setSearching(true)
+    }
   }
 
   const addToSavedProducts = (newProduct:Product) => {

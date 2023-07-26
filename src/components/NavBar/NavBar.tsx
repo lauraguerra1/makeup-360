@@ -37,11 +37,10 @@ const NavBar = ({loading, updateSearching, allProducts, savedProducts, updatePro
     searchData || selectedCategory ? setClearAllowed(true) : setClearAllowed(false)
     // if location includes favorites, pass in saved 
     //else pass in all products 
-    if(searchData || selectedCategory) {
-      location.includes('favorites') 
-      ? updateProducts(savedProducts, searchData, makeSnakeCase(selectedCategory))
-      : updateProducts(allProducts, searchData, makeSnakeCase(selectedCategory))
-    }
+    // if we add saved products to the dependency  for some reason it shows all filtered products 
+    location.includes('favorites') 
+    ? updateProducts(savedProducts, searchData, makeSnakeCase(selectedCategory))
+    : updateProducts(allProducts, searchData, makeSnakeCase(selectedCategory))
   }, [searchData, selectedCategory])
 
   const clearSearch = () => {

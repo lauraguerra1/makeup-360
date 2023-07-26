@@ -10,11 +10,12 @@ import { Link, useLocation } from 'react-router-dom'
 
 interface NavBarProps {
   loading: boolean
-  products: Product[]
-  updateProducts: (brand: string, type: string | null) => void 
+  allProducts: Product[]
+  savedProducts: Product[],
+  updateProducts: (products: Product[], brand: string, type: string | null) => void 
 }
 
-const NavBar = ({loading, products, updateProducts}: NavBarProps) => {
+const NavBar = ({loading, allProducts, savedProducts, updateProducts}: NavBarProps) => {
   const [searchData, setSearchData] = useState<string>('')
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
   const [clearAllowed, setClearAllowed] = useState(false)
@@ -33,7 +34,11 @@ const NavBar = ({loading, products, updateProducts}: NavBarProps) => {
 
   useEffect(() => {
     searchData || selectedCategory ? setClearAllowed(true) : setClearAllowed(false)
-    updateProducts(searchData, makeSnakeCase(selectedCategory))
+    // if location includes favorites, pass in saved 
+    //else pass in all products 
+    location.includes('favorites') 
+    ? updateProducts(savedProducts, searchData, makeSnakeCase(selectedCategory))
+    : updateProducts(allProducts, searchData, makeSnakeCase(selectedCategory))
   }, [searchData, selectedCategory])
 
   const clearSearch = () => {

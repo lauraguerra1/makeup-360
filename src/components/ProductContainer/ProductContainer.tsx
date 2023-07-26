@@ -13,6 +13,8 @@ interface PCProps {
 const ProductContainer = ({allProducts, filteredProducts, savedProducts}: PCProps) => {
   const location = useLocation().pathname
   const [featuredProducts, setFeaturedProducts] = useState<Product[]>([])
+
+
   
   useEffect(() => {
     if(allProducts.length) {
@@ -56,7 +58,7 @@ const ProductContainer = ({allProducts, filteredProducts, savedProducts}: PCProp
     <section className="product-container">
       <h2 className="featured-header">{location.includes('favorites') ? "Saved Items" : filteredProducts.length ? 'Showing Search Results' : "Featured Items"}</h2>
       <div className="product-wrapper" >
-        {location.includes('favorites') ? savedProductCards : filteredProducts.length ? filteredProductCards : featuredProductCards}
+        {filteredProducts.length ? filteredProductCards : location.includes('favorites') ? savedProductCards : featuredProductCards}
       </div>
     </section>
   )

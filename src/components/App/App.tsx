@@ -14,10 +14,14 @@ const App = () => {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<Error | string | unknown>('')
   const [savedProducts, setSavedProducts] = useState<Product[]>([])
+
+  console.log(filteredProducts)
   
-  const updateFilteredProducts = (brand: string, type: string | null) => {
+  const updateProducts = (products:Product[], brand: string, type: string | null) => {
+    //accept an argument for what to filter off of replacing 'allProducts'
+    // coming in either 'allProducts' or 'savedProducts'
     !type && !brand ? setFilteredProducts([]) : 
-    setFilteredProducts(allProducts.filter(product => {
+    setFilteredProducts(products.filter(product => {
       const brandMatch = product.brand?.includes(brand.toLowerCase())
       const typeMatch = product.product_type === type;
       return type? brandMatch && typeMatch : brandMatch
@@ -49,7 +53,7 @@ const App = () => {
   return (
     <main>
       //in nav add a condition for if the location is favorites to search based off faves only
-      <NavBar loading={loading} products={allProducts} updateProducts={updateFilteredProducts}/>
+      <NavBar loading={loading} allProducts={allProducts} savedProducts={savedProducts} updateProducts={updateProducts}/>
       {loading ? 
         <section className='loading-container'>
           <img className='loading' src={logo} alt='Makeup 360 spinning logo' />

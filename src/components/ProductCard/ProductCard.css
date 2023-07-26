@@ -1,10 +1,36 @@
-.image-container {
-  height: 20vh;
-  width: 20vw;
-
+.product-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 10px;
+  border: 2px solid #d1b296;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 6px;
+  padding: 20px;
+  width: 200px;
+  height:auto;
 }
 
-.product-image {
-  height: 100%;
-  object-fit: contain
+.product-card:hover {
+  transform: translateY(-4px);
+}
+
+.image-container {
+  display: flex;
+  justify-content: center;
+}
+.product-img {
+  max-width: 100%;
+  height: auto;
+}
+
+.product-brand {
+  margin-bottom: 0;
+}
+
+.product-name {
+  margin: 0;
+}
+
+.product-tags {
+  margin: 0;
 }

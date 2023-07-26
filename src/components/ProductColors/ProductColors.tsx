@@ -8,11 +8,11 @@ interface ProductColorsProps {
 const ProductColors = ({hexColors}: ProductColorsProps) => {
   
   return (
-    <div className="circle-container">
+    <div className="color-container">
       {hexColors.map((hexColor) => (
         <div
           key={hexColor.hex_value}
-          className="circle"
+          className="color-circle"
           style={{
             backgroundColor: hexColor.hex_value.split(',')[0],
             height: '30px',

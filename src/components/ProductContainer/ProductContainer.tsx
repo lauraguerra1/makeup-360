@@ -1,40 +1,59 @@
-import { useEffect } from "react"
+import { useEffect, useState} from "react"
 import { Product } from "../../apiTypes"
 import ProductCard from "../ProductCard/ProductCard"
+import './ProductContainer.css'
 interface PCProps {
+  allProducts: Product[],
   filteredProducts: Product[]
-  searching: boolean
 }
 
-const ProductContainer = ({filteredProducts, searching}: PCProps) => {
+const ProductContainer = ({allProducts, filteredProducts}: PCProps) => {
+  const [featuredProducts, setFeaturedProducts] = useState<Product[]>([])
+
   useEffect(() => {
+    if(allProducts.length) {
+      updateRandomProducts(allProducts)
+    }
+  }, [])
 
-  }, [filteredProducts])
+  const updateRandomProducts = (products: Product[]) => {
+    let fiveStars = products.filter(product => product.rating === 5) 
+    setFeaturedProducts(getRandomProducts(fiveStars))
+  }
 
-//this will contain all the little products or the featured items
-// will get a prop coming from App with all single products 
-//maps over them to return a bunch of <ProductCard /> 's 
+  const getRandomProducts = (products:Product[]) => {
+    const newProducts = []
+    for(let i = 0; i < 4; i++) {
+      newProducts.push(products[Math.floor(Math.random()*products.length)])
+    }
+    return newProducts
+  }
 
-const productCards = filteredProducts.map(product => {
+  const getProductCards = (products:Product[]):JSX.Element[]=> {
+    return products.map(product => {
+      return (
+        <ProductCard 
+          image={product.api_featured_image}
+          brand={product.brand}
+          name={product.name}
+          tags={product.tag_list}
+          id={product.id}
+          key={product.id}
+        />
+      )
+  })
+  } 
+
+  const featuredProductCards = getProductCards(featuredProducts)
+  const filteredProductCards = getProductCards(filteredProducts)
 
   return (
-    <ProductCard 
-      image={product.api_featured_image}
-      brand={product.brand}
-      name={product.name}
-      tags={product.tag_list}
-      id={product.id}
-    />
-  )
-});
-
-// if the array of 'filtered /all products' is empty display featured items 
-//if featured items then add an H2 for FEATURED 
-  return (
-  <p className="product-wrapper">
-    This will either be fatured products or all products 
-    {productCards}
-  </p>
+    <section className="product-container">
+      {!filteredProducts.length && <h2 className="featured-header">Featured Items</h2>}
+      <div className="product-wrapper" >
+        {filteredProducts.length ? filteredProductCards : featuredProductCards}
+      </div>
+    </section>
   )
 }
 

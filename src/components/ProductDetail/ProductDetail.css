@@ -1,17 +1,18 @@
 .product-detail-card {
   display: flex;
   align-items: center;
-  width: 70vw;
+  justify-content: center;
 }
 
 .product-image {
   height: 50vh;
-  width: 60vw;
+  max-width: 60vw;
+  margin-right: 5vw;
 }
 
-.image-container {
+/* .image-container {
   width: 40vw;
-}
+} */
 
 .product-detail-container {
   display: flex;
@@ -35,6 +36,7 @@
   background-color:#e6beae;
   border: none;
   padding: 6px;
+  cursor: pointer;
 }
 
 .add-product-to-favorites{

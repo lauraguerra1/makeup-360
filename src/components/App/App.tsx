@@ -45,9 +45,7 @@ const App = () => {
     }
     apiCall()
   }, [])
-  useEffect(() => {
-    console.log(savedProducts)
-  }, [savedProducts])
+
   return (
     <main>
       <NavBar loading={loading} products={allProducts} updateProducts={updateFilteredProducts}/>

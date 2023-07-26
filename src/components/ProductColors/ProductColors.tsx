@@ -5,9 +5,7 @@ import './ProductColors.css'
 interface ProductColorsProps {
   hexColors: ProductColor[];
 }
-const ProductColors = ({hexColors}: ProductColorsProps) => {
-  console.log(hexColors)
-  
+const ProductColors = ({hexColors}: ProductColorsProps) => {  
   return (
     <div className="circle-container">
       {hexColors.map((hexColor) => (

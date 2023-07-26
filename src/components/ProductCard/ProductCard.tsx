@@ -1,4 +1,3 @@
-import { Product } from '../../apiTypes';
 import './ProductCard.css'
 import { Link } from 'react-router-dom';
 
@@ -12,9 +11,6 @@ interface ProductCardProps {
 }
 
 const ProductCard = (props: ProductCardProps) => {
-  //generate one product with image, Brand, tags, and Name 
-  //this is just on little card 
-
   return (
     <div className='product-card'>
       <div className='image-container'>

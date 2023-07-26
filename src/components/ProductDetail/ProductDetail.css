@@ -26,7 +26,6 @@
 }
 
 .buttons-container{
-  /* border: solid pink; */
   display: flex;
   padding: 20px;
 }
@@ -41,5 +40,4 @@
 .add-product-to-favorites{
   height: 22px;
   padding: 2px;
-  /* border: solid pink; */
 }

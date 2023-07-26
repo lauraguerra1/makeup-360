@@ -1,6 +1,7 @@
 import { useEffect} from "react"
 import { Product } from "../../apiTypes"
 import ProductCard from "../ProductCard/ProductCard"
+import './ProductContainer.css'
 interface PCProps {
   updateFeaturedProducts: (newProducts:Product[]) => void
   featuredProducts: Product[]
@@ -48,9 +49,11 @@ const featuredProductCards = getProductCards(featuredProducts)
 const filteredProductCards = getProductCards(filteredProducts)
 
   return (
-    <section className="product-wrapper">
+    <section className="product-container">
       {!filteredProducts.length && <h2>Featured Items</h2>}
-      {filteredProducts.length ? filteredProductCards : featuredProductCards}
+      <div className="product-wrapper" >
+        {filteredProducts.length ? filteredProductCards : featuredProductCards}
+      </div>
     </section>
   )
 }

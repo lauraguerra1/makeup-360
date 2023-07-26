@@ -59,7 +59,7 @@ const ProductDetail = ({allProducts, savedProducts, removeFromSavedProducts, add
                 <Link to={chosenProductDetails.product_link} > 
                   <button className='website-link-button'>View On Product Website</button>
                 </Link>
-                <button onClick={savedProduct ? () => removeFromSavedProducts(savedProduct) : () => addToSavedProducts(chosenProductDetails)}><img src={savedProduct? unfavorite :favorite} alt='add to favorites' className='add-product-to-favorites'/></button>
+                <button className='save-button' onClick={savedProduct ? () => removeFromSavedProducts(savedProduct) : () => addToSavedProducts(chosenProductDetails)}><img src={savedProduct? unfavorite :favorite} alt='add to favorites' className='add-product-to-favorites'/></button>
               </div>
             </aside>
         </div>

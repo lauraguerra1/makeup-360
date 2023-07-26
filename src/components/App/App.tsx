@@ -48,6 +48,7 @@ const App = () => {
 
   return (
     <main>
+      //in nav add a condition for if the location is favorites to search based off faves only
       <NavBar loading={loading} products={allProducts} updateProducts={updateFilteredProducts}/>
       {loading ? 
         <section className='loading-container'>
@@ -56,8 +57,10 @@ const App = () => {
         </section>
         : 
         <Routes>
-          <Route path='/' element={<ProductContainer filteredProducts={filteredProducts} allProducts={allProducts} />} />
+          <Route path='/' element={<ProductContainer filteredProducts={filteredProducts} allProducts={allProducts} savedProducts={savedProducts}/>} />
           <Route path='/product/:id' element={<ProductDetail allProducts={allProducts} savedProducts={savedProducts} addToSavedProducts={addToSavedProducts} removeFromSavedProducts={removeFromSavedProducts} />} />
+          // pass in other props and add logic for if we are on faves
+          <Route path='/favorites' element={<ProductContainer filteredProducts={filteredProducts} allProducts={allProducts} savedProducts={savedProducts}/>}/>
         </Routes>
       }
     </main>

@@ -2,13 +2,18 @@ import { useEffect, useState} from "react"
 import { Product } from "../../apiTypes"
 import ProductCard from "../ProductCard/ProductCard"
 import './ProductContainer.css'
+import { useLocation } from "react-router-dom"
+import ProductDisplay from '../ProductDisplay/ProductDisplay'
+
 interface PCProps {
   allProducts: Product[],
-  filteredProducts: Product[]
+  filteredProducts: Product[],
+  savedProducts: Product[]
 }
 
-const ProductContainer = ({allProducts, filteredProducts}: PCProps) => {
+const ProductContainer = ({allProducts, filteredProducts, savedProducts}: PCProps) => {
   const [featuredProducts, setFeaturedProducts] = useState<Product[]>([])
+  const location = useLocation().pathname
 
   useEffect(() => {
     if(allProducts.length) {
@@ -29,29 +34,31 @@ const ProductContainer = ({allProducts, filteredProducts}: PCProps) => {
     return newProducts
   }
 
-  const getProductCards = (products:Product[]):JSX.Element[]=> {
-    return products.map(product => {
-      return (
-        <ProductCard 
-          image={product.api_featured_image}
-          brand={product.brand}
-          name={product.name}
-          tags={product.tag_list}
-          id={product.id}
-          key={product.id}
-        />
-      )
-  })
-  } 
+  // const getProductCards = (products:Product[]):JSX.Element[]=> {
+  //   return products.map(product => {
+  //     return (
+  //       <ProductCard 
+  //         image={product.api_featured_image}
+  //         brand={product.brand}
+  //         name={product.name}
+  //         tags={product.tag_list}
+  //         id={product.id}
+  //         key={product.id}
+  //       />
+  //     )
+  // })
+  // } 
 
-  const featuredProductCards = getProductCards(featuredProducts)
-  const filteredProductCards = getProductCards(filteredProducts)
+  // const featuredProductCards = getProductCards(featuredProducts)
+  // const filteredProductCards = getProductCards(filteredProducts)
+  // const savedProductCards = getProductCards(savedProducts)
 
   return (
     <section className="product-container">
       {!filteredProducts.length && <h2 className="featured-header">Featured Items</h2>}
       <div className="product-wrapper" >
-        {filteredProducts.length ? filteredProductCards : featuredProductCards}
+        {/* {filteredProducts.length ? filteredProductCards : featuredProductCards} */}
+        <ProductDisplay featuredProducts={featuredProducts} filteredProducts={filteredProducts} savedProducts={savedProducts}/>
       </div>
     </section>
   )

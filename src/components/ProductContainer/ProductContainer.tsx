@@ -3,7 +3,6 @@ import { Product } from "../../apiTypes"
 import ProductCard from "../ProductCard/ProductCard"
 import './ProductContainer.css'
 import { useLocation } from "react-router-dom"
-import ProductDisplay from '../ProductDisplay/ProductDisplay'
 
 interface PCProps {
   allProducts: Product[],
@@ -12,9 +11,9 @@ interface PCProps {
 }
 
 const ProductContainer = ({allProducts, filteredProducts, savedProducts}: PCProps) => {
-  const [featuredProducts, setFeaturedProducts] = useState<Product[]>([])
   const location = useLocation().pathname
-
+  const [featuredProducts, setFeaturedProducts] = useState<Product[]>([])
+  
   useEffect(() => {
     if(allProducts.length) {
       updateRandomProducts(allProducts)
@@ -34,31 +33,30 @@ const ProductContainer = ({allProducts, filteredProducts, savedProducts}: PCProp
     return newProducts
   }
 
-  // const getProductCards = (products:Product[]):JSX.Element[]=> {
-  //   return products.map(product => {
-  //     return (
-  //       <ProductCard 
-  //         image={product.api_featured_image}
-  //         brand={product.brand}
-  //         name={product.name}
-  //         tags={product.tag_list}
-  //         id={product.id}
-  //         key={product.id}
-  //       />
-  //     )
-  // })
-  // } 
+  const getProductCards = (products:Product[]):JSX.Element[]=> {
+    return products.map(product => {
+      return (
+        <ProductCard 
+          image={product.api_featured_image}
+          brand={product.brand}
+          name={product.name}
+          tags={product.tag_list}
+          id={product.id}
+          key={product.id}
+        />
+      )
+  })
+  } 
 
-  // const featuredProductCards = getProductCards(featuredProducts)
-  // const filteredProductCards = getProductCards(filteredProducts)
-  // const savedProductCards = getProductCards(savedProducts)
+  const featuredProductCards = getProductCards(featuredProducts)
+  const filteredProductCards = getProductCards(filteredProducts)
+  const savedProductCards = getProductCards(savedProducts)
 
   return (
     <section className="product-container">
-      {!filteredProducts.length && <h2 className="featured-header">Featured Items</h2>}
+      <h2 className="featured-header">{location.includes('favorites') ? "Saved Items" : filteredProducts.length ? 'Showing Search Results' : "Featured Items"}</h2>
       <div className="product-wrapper" >
-        {/* {filteredProducts.length ? filteredProductCards : featuredProductCards} */}
-        <ProductDisplay featuredProducts={featuredProducts} filteredProducts={filteredProducts} savedProducts={savedProducts}/>
+        {location.includes('favorites') ? savedProductCards : filteredProducts.length ? filteredProductCards : featuredProductCards}
       </div>
     </section>
   )

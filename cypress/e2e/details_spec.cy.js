@@ -18,7 +18,7 @@ describe('view product details spec', () => {
       cy.filterBy('Lipstick')
       cy.get('.product-image').first().click()
       cy.get('.product-detail-container')
-      cy.contains('h3', 'colourpop')
+        .get('h3', 'colourpop')
       cy.contains('h4', 'Blotted Lip')
     })
   })

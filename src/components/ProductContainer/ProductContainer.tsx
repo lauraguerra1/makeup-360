@@ -26,12 +26,16 @@ const ProductContainer = ({allProducts, filteredProducts, savedProducts, searchi
 
   const updateRandomProducts = (products: Product[]) => {
     let fiveStars = products.filter(product => product.rating === 5) 
-    getRandomProducts(fiveStars)
-    
-    setFeaturedProducts(randomProducts)
-    
-    if(randomProducts.length < 3) {
-      updateRandomProducts(products)
+    if(fiveStars.length === 4) {
+      setFeaturedProducts(fiveStars)
+    } else {
+      getRandomProducts(fiveStars)
+      
+      setFeaturedProducts(randomProducts)
+      
+      if(randomProducts.length < 3) {
+        updateRandomProducts(products)
+      }
     }
   }
 

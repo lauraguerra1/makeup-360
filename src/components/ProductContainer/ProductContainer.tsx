@@ -31,7 +31,9 @@ const ProductContainer = ({allProducts, filteredProducts, savedProducts, searchi
     } else {
       getRandomProducts(fiveStars)
       
-      setFeaturedProducts(randomProducts)
+      if(randomProducts.length === 4) {
+        setFeaturedProducts(randomProducts)
+      }
       
       if(randomProducts.length < 3) {
         updateRandomProducts(products)

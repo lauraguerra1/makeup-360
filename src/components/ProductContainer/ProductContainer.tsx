@@ -45,23 +45,29 @@ const ProductContainer = ({allProducts, filteredProducts, savedProducts, searchi
       randomProducts.push(newItem)
     }
   }
-
+  
+  
+  
   const getProductCards = (products:Product[]):JSX.Element[]=> {
     return products.map(product => {
       return (
         <ProductCard 
-          image={product.api_featured_image}
-          brand={product.brand}
-          name={product.name}
-          tags={product.tag_list}
-          id={product.id}
-          key={product.id}
+        image={product.api_featured_image}
+        brand={product.brand}
+        name={product.name}
+        tags={product.tag_list}
+        id={product.id}
+        key={product.id}
         />
-      )
-  })
-  } 
-
-  const featuredProductCards = getProductCards(featuredProducts)
+        )
+      })
+    } 
+    
+  let featuredProductCards;
+  if(featuredProducts.length) {
+  featuredProductCards = getProductCards(featuredProducts)
+  }
+  
   const filteredProductCards = getProductCards(filteredProducts)
   const savedProductCards = getProductCards(savedProducts)
 
@@ -74,6 +80,7 @@ const ProductContainer = ({allProducts, filteredProducts, savedProducts, searchi
       </div>
     </section>
   )
+    
 }
 
 export default ProductContainer

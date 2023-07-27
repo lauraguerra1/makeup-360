@@ -13,16 +13,24 @@ const App = () => {
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<Error | string | unknown>('')
-  const [savedProducts, setSavedProducts] = useState<Product[]>([])
   const [searching, setSearching] = useState(false)
+  const [savedProducts, setSavedProducts] = useState<Product[]>([])
+  
+  const getSavedProducts = () => {
+    const storage = localStorage.savedProducts
+    if(storage) {
+      setSavedProducts(JSON.parse(storage))
+    } 
+  }
 
-  console.log(filteredProducts)
+  useEffect(() => {
+    getSavedProducts()
+  }, [])
+  
 
   const updateSearching = (boolean: boolean) => setSearching(boolean)
   
   const updateProducts = (products:Product[], brand: string, type: string | null) => {
-    //accept an argument for what to filter off of replacing 'allProducts'
-    // coming in either 'allProducts' or 'savedProducts'
     if(!type && !brand) {
       setFilteredProducts([])
       setSearching(false)
@@ -37,11 +45,14 @@ const App = () => {
   }
 
   const addToSavedProducts = (newProduct:Product) => {
-    setSavedProducts(previous=> [...previous, newProduct])
+    window.localStorage.setItem('savedProducts', JSON.stringify([...savedProducts, newProduct]))
+    setSavedProducts(JSON.parse(localStorage.savedProducts))
   }
 
   const removeFromSavedProducts = (product:Product) => {
-    setSavedProducts(previous => previous.filter(oldProduct => oldProduct.id !== product.id))
+    const filteredProducts = savedProducts.filter(oldProduct => oldProduct.id !== product.id)
+    window.localStorage.setItem('savedProducts', JSON.stringify(filteredProducts))
+    setSavedProducts(JSON.parse(localStorage.savedProducts))
   }
 
   useEffect(() => {
@@ -60,7 +71,6 @@ const App = () => {
 
   return (
     <main>
-      //in nav add a condition for if the location is favorites to search based off faves only
       <NavBar loading={loading} updateSearching={updateSearching} allProducts={allProducts} savedProducts={savedProducts} updateProducts={updateProducts}/>
       {loading ? 
         <section className='loading-container'>
@@ -71,7 +81,6 @@ const App = () => {
         <Routes>
           <Route path='/' element={<ProductContainer filteredProducts={filteredProducts} allProducts={allProducts} savedProducts={savedProducts} searching={searching}/>} />
           <Route path='/product/:id' element={<ProductDetail allProducts={allProducts} savedProducts={savedProducts} addToSavedProducts={addToSavedProducts} removeFromSavedProducts={removeFromSavedProducts} />} />
-          // pass in other props and add logic for if we are on faves
           <Route path='/favorites' element={<ProductContainer filteredProducts={filteredProducts} allProducts={allProducts} savedProducts={savedProducts} searching={searching}/>}/>
         </Routes>
       }

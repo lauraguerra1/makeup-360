@@ -41,7 +41,7 @@ const NavBar = ({loading, updateSearching, allProducts, savedProducts, updatePro
     location.includes('favorites') 
     ? updateProducts(savedProducts, searchData, makeSnakeCase(selectedCategory))
     : updateProducts(allProducts, searchData, makeSnakeCase(selectedCategory))
-  }, [searchData, selectedCategory])
+  }, [searchData, selectedCategory, location])
 
   const clearSearch = () => {
     setSearchData('')
@@ -55,7 +55,7 @@ const NavBar = ({loading, updateSearching, allProducts, savedProducts, updatePro
     <Link className='logo-link' to='/' onClick={clearSearch}><img src={logo} alt='Makeup 360 logo' /></Link>
       <div className='small-screen-flex'>
         {!loading && showSearch() && <input className='search' type='search' placeholder='Search for a brand...' value={searchData} onChange={(e) => setSearchData(e.target.value)}/>}
-        <Link className='favorites' to='/favorites'><img src={unfavorite} alt='view favorites link' /></Link>
+        {!location.includes("favorites") &&  <Link onClick={clearSearch} className='favorites' to='/favorites'><img src={unfavorite} alt='view favorites link' /></Link>}
       </div>
     </div>
     <div className='bottom-nav'>

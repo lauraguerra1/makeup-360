@@ -14,6 +14,7 @@ interface PCProps {
 const ProductContainer = ({allProducts, filteredProducts, savedProducts, searching}: PCProps) => {
   const location = useLocation().pathname
   const [featuredProducts, setFeaturedProducts] = useState<Product[]>([])
+  const randomProducts: Product[] = []
 
 
   
@@ -25,33 +26,51 @@ const ProductContainer = ({allProducts, filteredProducts, savedProducts, searchi
 
   const updateRandomProducts = (products: Product[]) => {
     let fiveStars = products.filter(product => product.rating === 5) 
-    setFeaturedProducts(getRandomProducts(fiveStars))
+    if(fiveStars.length === 4) {
+      setFeaturedProducts(fiveStars)
+    } else {
+      getRandomProducts(fiveStars)
+      
+      if(randomProducts.length === 4) {
+        setFeaturedProducts(randomProducts)
+      }
+      
+      if(randomProducts.length < 3) {
+        updateRandomProducts(products)
+      }
+    }
   }
 
   const getRandomProducts = (products:Product[]) => {
-    const newProducts = []
-    for(let i = 0; i < 4; i++) {
-      newProducts.push(products[Math.floor(Math.random()*products.length)])
+    const newItem = products[Math.floor(Math.random()*products.length)]
+    const foundItem = randomProducts.find(product => product.id === newItem.id)
+    if (!foundItem) {
+      randomProducts.push(newItem)
     }
-    return newProducts
   }
-
+  
+  
+  
   const getProductCards = (products:Product[]):JSX.Element[]=> {
     return products.map(product => {
       return (
         <ProductCard 
-          image={product.api_featured_image}
-          brand={product.brand}
-          name={product.name}
-          tags={product.tag_list}
-          id={product.id}
-          key={product.id}
+        image={product.api_featured_image}
+        brand={product.brand}
+        name={product.name}
+        tags={product.tag_list}
+        id={product.id}
+        key={product.id}
         />
-      )
-  })
-  } 
-
-  const featuredProductCards = getProductCards(featuredProducts)
+        )
+      })
+    } 
+    
+  let featuredProductCards;
+  if(featuredProducts.length) {
+  featuredProductCards = getProductCards(featuredProducts)
+  }
+  
   const filteredProductCards = getProductCards(filteredProducts)
   const savedProductCards = getProductCards(savedProducts)
 
@@ -64,6 +83,7 @@ const ProductContainer = ({allProducts, filteredProducts, savedProducts, searchi
       </div>
     </section>
   )
+    
 }
 
 export default ProductContainer

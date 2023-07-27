@@ -12,7 +12,7 @@ describe('search and filter spec', () => {
     cy.get('.product-card')[position]().children().find(`img[alt="${name}"]`)
     .get('.product-name')[position]().contains(name)
     .get('.product-brand')[position]().contains(brand)
-    .get('.product-tags')[position]().contains(`tags: ${tags}`)
+    .get('.product-tags')[position]().contains(tags)
     //change test for tags after we change UI 
     //consider adding the product brand and product type to alt text to be something like 'colourpop Lippie Pencil lipstick' 
   })
@@ -29,9 +29,10 @@ describe('search and filter spec', () => {
   it('should be able to search for a product by brand', () => {
     cy.wait('@getProducts').then((interception) => {
       cy.search('colourpop')
+        .get('h2').contains('Showing Search Results')
         .get('.product-card').should('have.length', 4)
-        .assertProduct('first', 'Lippie Pencil', 'colourpop', 'cruelty freeVegan')
-        .assertProduct('last', 'No Filter Foundation', 'colourpop', 'cruelty freeVegan')
+        .assertProduct('first', 'Lippie Pencil', 'colourpop', 'tags: cruelty free, Vegan')
+        .assertProduct('last', 'No Filter Foundation', 'colourpop', 'tags: cruelty free, Vegan')
     })
   })
 
@@ -39,33 +40,36 @@ describe('search and filter spec', () => {
   it('should filter products by type', () => {
     cy.wait('@getProducts').then((interception) => {
       cy.filterBy('Foundation')
+        .get('h2').contains('Showing Search Results')
         .get('.filled').should('have.length', 1).contains('Foundation')
         .get('.empty').should('have.length', 9)
         .get('.product-card').should('have.length', 3)
-        .assertProduct('first', 'No Filter Foundation', 'colourpop', 'cruelty freeVegan')
-        .assertProduct('last', 'Coverage Foundation', 'deciem', 'Vegan')
+        .assertProduct('first', 'No Filter Foundation', 'colourpop', 'tags: cruelty free, Vegan')
+        .assertProduct('last', 'Coverage Foundation', 'deciem', 'tags: Vegan')
     })
   })
 
   it('should search, then filter based on remaining results', () => {
     cy.wait('@getProducts').then((interception) => {
       cy.search('colourpop')
+      .get('h2').contains('Showing Search Results')
       .get('.product-card').should('have.length', 4)
-      .assertProduct('first', 'Lippie Pencil', 'colourpop', 'cruelty freeVegan')
+      .assertProduct('first', 'Lippie Pencil', 'colourpop', 'tags: cruelty free, Vegan')
       .filterBy('Foundation')
       .get('.product-card').should('have.length', 1)
-      .assertProduct('first', 'No Filter Foundation', 'colourpop', 'cruelty freeVegan')
+      .assertProduct('first', 'No Filter Foundation', 'colourpop', 'tags: cruelty free, Vegan')
     })
   })
 
   it('should filter, then search based on remaining results, then clear search', () => {
     cy.wait('@getProducts').then((interception) => {
      cy.filterBy('Lipstick') 
+       .get('h2').contains('Showing Search Results')
        .get('.product-card').should('have.length', 3)
-       .assertProduct('first', 'Blotted Lip', 'colourpop', 'cruelty freeVegan')
-       .assertProduct('last', 'Lipstick', 'boosh', 'Chemical FreeOrganic')
+       .assertProduct('first', 'Blotted Lip', 'colourpop', 'tags: cruelty free, Vegan')
+       .assertProduct('last', 'Lipstick', 'boosh', 'tags: Chemical Free, Organic')
        .get('.clear-search').click()
-       .get('.product-card').should('have.length', 0)
+       .get('h2').contains('Featured Items')
     })
   })
 

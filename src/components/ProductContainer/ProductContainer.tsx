@@ -14,6 +14,7 @@ interface PCProps {
 const ProductContainer = ({allProducts, filteredProducts, savedProducts, searching}: PCProps) => {
   const location = useLocation().pathname
   const [featuredProducts, setFeaturedProducts] = useState<Product[]>([])
+  const randomProducts: Product[] = []
 
 
   
@@ -25,15 +26,24 @@ const ProductContainer = ({allProducts, filteredProducts, savedProducts, searchi
 
   const updateRandomProducts = (products: Product[]) => {
     let fiveStars = products.filter(product => product.rating === 5) 
-    setFeaturedProducts(getRandomProducts(fiveStars))
+    getRandomProducts(fiveStars)
+
+    if(randomProducts.length === 4 ) {
+      setFeaturedProducts(randomProducts)
+      return
+    }
+
+    if(randomProducts.length < 3) {
+      updateRandomProducts(products)
+    }
   }
 
   const getRandomProducts = (products:Product[]) => {
-    const newProducts = []
-    for(let i = 0; i < 4; i++) {
-      newProducts.push(products[Math.floor(Math.random()*products.length)])
+    const newItem = products[Math.floor(Math.random()*products.length)]
+    const foundItem = randomProducts.find(product => product.id === newItem.id)
+    if (!foundItem) {
+      randomProducts.push(newItem)
     }
-    return newProducts
   }
 
   const getProductCards = (products:Product[]):JSX.Element[]=> {

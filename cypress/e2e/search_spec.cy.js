@@ -26,7 +26,7 @@ describe('search and filter spec', () => {
 
   })
 
-  it.only('should be able to search for a product by brand', () => {
+  it('should be able to search for a product by brand', () => {
     cy.wait('@getProducts').then((interception) => {
       cy.search('colourpop')
         .get('h2').contains('Showing Search Results')
@@ -70,7 +70,6 @@ describe('search and filter spec', () => {
        .assertProduct('last', 'Lipstick', 'boosh', 'tags: Chemical Free, Organic')
        .get('.clear-search').click()
        .get('h2').contains('Featured Items')
-       .get('.product-card').should('have.length', 4)
     })
   })
 

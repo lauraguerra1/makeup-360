@@ -10,10 +10,6 @@
   margin-right: 5vw;
 }
 
-/* .image-container {
-  width: 40vw;
-} */
-
 .product-detail-container {
   display: flex;
   align-items: center;
@@ -28,6 +24,7 @@
 
 .buttons-container{
   display: flex;
+  align-items: center;
   padding: 20px;
 }
 
@@ -40,6 +37,13 @@
 }
 
 .add-product-to-favorites{
-  height: 22px;
+  height: 30px;
   padding: 2px;
+  object-fit: cover;
+}
+
+.save-button {
+  background: none;
+  border: none;
+  height: 100%;
 }

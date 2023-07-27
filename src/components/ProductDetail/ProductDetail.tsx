@@ -3,22 +3,30 @@ import { useParams, Link } from 'react-router-dom';
 import { Product } from '../../apiTypes';
 import ProductColors from '../ProductColors/ProductColors';
 import favorite from '../../images/favorite.png';
+import unfavorite from '../../images/unfavorite.png'
 
 interface ProductDetailProps {
   allProducts: Product[]
+  savedProducts: Product[]
+  removeFromSavedProducts: (product:Product) => void
+  addToSavedProducts: (newProduct:Product) => void
 };
 
-const ProductDetail = ({allProducts}: ProductDetailProps) => {
+const ProductDetail = ({allProducts, savedProducts, removeFromSavedProducts, addToSavedProducts}: ProductDetailProps) => {
 
   const chosenProductID = useParams().id
 
-  const findSingleProduct = (chosenProductID: any) => {
-    return allProducts.find(product => {
-      return product.id === parseInt(chosenProductID)
-    })
+  const findSingleProduct = (chosenProductID: string | undefined, productArray:Product[]) => {
+    if(chosenProductID) {
+      return productArray.find(product => {
+        return product.id === parseInt(chosenProductID)
+      })
+    }
   }
 
-  const chosenProductDetails = findSingleProduct(chosenProductID)
+  const chosenProductDetails = findSingleProduct(chosenProductID, allProducts)
+
+  const savedProduct = findSingleProduct(chosenProductID, savedProducts)
 
   return (
     <div className='product-detail-card'>
@@ -51,7 +59,7 @@ const ProductDetail = ({allProducts}: ProductDetailProps) => {
                 <Link to={chosenProductDetails.product_link} > 
                   <button className='website-link-button'>View On Product Website</button>
                 </Link>
-                <img src={favorite} alt='add to favorites' className='add-product-to-favorites'/>
+                <button className='save-button' onClick={savedProduct ? () => removeFromSavedProducts(savedProduct) : () => addToSavedProducts(chosenProductDetails)}><img src={savedProduct? unfavorite :favorite} alt='add to favorites' className='add-product-to-favorites'/></button>
               </div>
             </aside>
         </div>

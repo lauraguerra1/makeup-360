@@ -10,11 +10,13 @@ import { Link, useLocation } from 'react-router-dom'
 
 interface NavBarProps {
   loading: boolean
-  products: Product[]
-  updateProducts: (brand: string, type: string | null) => void 
+  updateSearching: (boolean: boolean) => void
+  allProducts: Product[]
+  savedProducts: Product[],
+  updateProducts: (products: Product[], brand: string, type: string | null) => void 
 }
 
-const NavBar = ({loading, products, updateProducts}: NavBarProps) => {
+const NavBar = ({loading, updateSearching, allProducts, savedProducts, updateProducts}: NavBarProps) => {
   const [searchData, setSearchData] = useState<string>('')
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
   const [clearAllowed, setClearAllowed] = useState(false)
@@ -33,12 +35,18 @@ const NavBar = ({loading, products, updateProducts}: NavBarProps) => {
 
   useEffect(() => {
     searchData || selectedCategory ? setClearAllowed(true) : setClearAllowed(false)
-    updateProducts(searchData, makeSnakeCase(selectedCategory))
-  }, [searchData, selectedCategory])
+    // if location includes favorites, pass in saved 
+    //else pass in all products 
+    // if we add saved products to the dependency  for some reason it shows all filtered products 
+    location.includes('favorites') 
+    ? updateProducts(savedProducts, searchData, makeSnakeCase(selectedCategory))
+    : updateProducts(allProducts, searchData, makeSnakeCase(selectedCategory))
+  }, [searchData, selectedCategory, location])
 
   const clearSearch = () => {
     setSearchData('')
     setSelectedCategory(null)
+    updateSearching(false)
   }
 
  return (
@@ -47,7 +55,7 @@ const NavBar = ({loading, products, updateProducts}: NavBarProps) => {
     <Link className='logo-link' to='/' onClick={clearSearch}><img src={logo} alt='Makeup 360 logo' /></Link>
       <div className='small-screen-flex'>
         {!loading && showSearch() && <input className='search' type='search' placeholder='Search for a brand...' value={searchData} onChange={(e) => setSearchData(e.target.value)}/>}
-        <Link className='favorites' to='/favorites'><img src={unfavorite} alt='view favorites link' /></Link>
+        {!location.includes("favorites") &&  <Link onClick={clearSearch} className='favorites' to='/favorites'><img src={unfavorite} alt='view favorites link' /></Link>}
       </div>
     </div>
     <div className='bottom-nav'>

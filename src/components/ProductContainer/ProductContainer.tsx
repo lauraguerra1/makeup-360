@@ -2,14 +2,21 @@ import { useEffect, useState} from "react"
 import { Product } from "../../apiTypes"
 import ProductCard from "../ProductCard/ProductCard"
 import './ProductContainer.css'
+import { useLocation } from "react-router-dom"
+
 interface PCProps {
   allProducts: Product[],
-  filteredProducts: Product[]
+  filteredProducts: Product[],
+  savedProducts: Product[],
+  searching: boolean
 }
 
-const ProductContainer = ({allProducts, filteredProducts}: PCProps) => {
+const ProductContainer = ({allProducts, filteredProducts, savedProducts, searching}: PCProps) => {
+  const location = useLocation().pathname
   const [featuredProducts, setFeaturedProducts] = useState<Product[]>([])
 
+
+  
   useEffect(() => {
     if(allProducts.length) {
       updateRandomProducts(allProducts)
@@ -46,12 +53,14 @@ const ProductContainer = ({allProducts, filteredProducts}: PCProps) => {
 
   const featuredProductCards = getProductCards(featuredProducts)
   const filteredProductCards = getProductCards(filteredProducts)
+  const savedProductCards = getProductCards(savedProducts)
 
   return (
     <section className="product-container">
-      {!filteredProducts.length && <h2 className="featured-header">Featured Items</h2>}
+      <h2 className="featured-header">{location.includes('favorites') ? "Saved Items" : searching ? 'Showing Search Results' : "Featured Items"}</h2>
       <div className="product-wrapper" >
-        {filteredProducts.length ? filteredProductCards : featuredProductCards}
+        {searching ? filteredProductCards : location.includes('favorites') ? savedProductCards : featuredProductCards}
+        {searching && !filteredProducts.length && <p>No results for your search! Please try a different search!</p>}
       </div>
     </section>
   )

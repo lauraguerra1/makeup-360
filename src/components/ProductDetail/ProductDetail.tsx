@@ -38,7 +38,7 @@ const ProductDetail = ({allProducts, savedProducts, removeFromSavedProducts, add
               </Link>
             </div>
             <aside className='details-aside'>
-              <h3>{chosenProductDetails.brand.toUpperCase()}</h3>
+              <h3>{chosenProductDetails.brand?.toUpperCase()}</h3>
               <h4>{chosenProductDetails.name.replace('&trade;', '\u2122')}</h4>
 
               {chosenProductDetails.description ? (

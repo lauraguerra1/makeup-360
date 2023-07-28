@@ -55,10 +55,13 @@
   padding: 1% 5%;
 }
 
-@media screen and (max-width: 520px) {
+@media screen and (max-width: 602px) {
   .product-card {
-    width: 100px;
-    font-size: 10px;
+    width: 80%;
     padding: 10px;
+  }
+
+  .product-brand, .product-name {
+    text-align: center;
   }
 }

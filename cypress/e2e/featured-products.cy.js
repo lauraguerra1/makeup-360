@@ -1,9 +1,9 @@
 describe('Featured Products Section', () => {
 
   Cypress.Commands.add('checkRating', (name) => {
-    cy.get('.product-card').find(`img[alt="${name}"]`).click()
+    cy.get('.top-nav').find('img[alt="Makeup 360 logo"]').click()
+    .get('.product-card').find(`img[alt="${name}"]`).click()
     .get('.product-rating').contains('5')
-    .get('.top-nav').find('img[alt="Makeup 360 logo"]').click()
   })
 
   Cypress.Commands.add('checkUniquity', (name) => {

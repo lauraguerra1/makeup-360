@@ -4,6 +4,7 @@ import { Product } from '../../apiTypes';
 import ProductColors from '../ProductColors/ProductColors';
 import favorite from '../../images/favorite.png';
 import unfavorite from '../../images/unfavorite.png'
+import ReactStars from 'react-stars';
 
 interface ProductDetailProps {
   allProducts: Product[]
@@ -32,17 +33,17 @@ const ProductDetail = ({allProducts, savedProducts, removeFromSavedProducts, add
     <div className='product-detail-card'>
       {chosenProductDetails ? (
         <div className='product-detail-container'>
-            <div className='image-container'>
-              <Link to={chosenProductDetails.product_link} >
+            <div className='detail-image-container'>
+              <Link  target='_blank' to={chosenProductDetails.product_link} >
                 <img src={chosenProductDetails.api_featured_image} className='product-image' id={chosenProductDetails.id.toString()} alt={chosenProductDetails.name}/>
               </Link>
             </div>
             <aside className='details-aside'>
-              <h3>{chosenProductDetails.brand}</h3>
+              <h3>{chosenProductDetails.brand?.toUpperCase()}</h3>
               <h4>{chosenProductDetails.name.replace('&trade;', '\u2122')}</h4>
 
               {chosenProductDetails.description ? (
-                <div className='product-description'>{chosenProductDetails.description.replace(/<[^>]*>/g, '')}</div>
+                <article className='product-description'>{chosenProductDetails.description.replace(/<[^>]*>/g, '')}</article>
                 ) : <p>Sorry, no product details currently available.</p>}
 
               {chosenProductDetails.price !== '0.0' ? (
@@ -50,13 +51,16 @@ const ProductDetail = ({allProducts, savedProducts, removeFromSavedProducts, add
                 ) : null }
 
               <ProductColors hexColors={chosenProductDetails.product_colors}/>
-              
-              {chosenProductDetails.rating !== null ? (
-                <div className='product-rating'>Rating: {chosenProductDetails.rating}</div>
-                ) : null}
+
+              {chosenProductDetails.rating && 
+                <section className='product-rating'>
+                  <p>Rating: </p>
+                  <ReactStars color1='#e6beae' edit={false} count={chosenProductDetails.rating} half={true}/>
+                </section>
+              }
 
               <div className='buttons-container'>
-                <Link to={chosenProductDetails.product_link} > 
+                <Link target='_blank' to={chosenProductDetails.product_link} > 
                   <button className='website-link-button'>View On Product Website</button>
                 </Link>
                 <button className='save-button' onClick={savedProduct ? () => removeFromSavedProducts(savedProduct) : () => addToSavedProducts(chosenProductDetails)}><img src={savedProduct? unfavorite :favorite} alt='add to favorites' className='add-product-to-favorites'/></button>

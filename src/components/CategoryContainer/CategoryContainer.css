@@ -24,7 +24,7 @@
   border: 2px solid #d1b296;
   /* background-color: #e7d8c9e0; */
   border-radius: 15px;
-  height: 60px;
+  height: 80px;
   display: flex;
   align-items: center;
   max-width: 90%;
@@ -32,19 +32,7 @@
 }
 
 .category-container::-webkit-scrollbar {
-  height: 5px;
+  height: 1px;
   border-radius: 50%;
 }
-/* 
-.category-container::-webkit-scrollbar-thumb {
-  background: pink;
-} */
 
-@media screen and (min-width: 1400px) {
-  .left-scroll-btn, .right-scroll-btn {
-    display:none
-  }
-  .category-container {
-    max-width: 100%;
-  }
-}

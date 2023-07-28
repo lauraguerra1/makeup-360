@@ -7,12 +7,16 @@
 
 .featured-header {
   margin-top: 0;
+  font-size: x-large;
 }
+
 
 .product-wrapper {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
   gap: 15px;
   margin-bottom: 20px;
+  height: 70vh;
 }

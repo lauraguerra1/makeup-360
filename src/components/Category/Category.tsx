@@ -9,9 +9,9 @@ interface CategoryProps {
 const Category = ({category, selected, updateCategory}: CategoryProps) => {
 
   return (
-    <section onClick={() => updateCategory(category)} className={selected ? 'filled category': 'empty category'}>
+    <button onClick={() => updateCategory(category)} className={selected ? 'filled category': 'empty category'}>
       {category}
-    </section>
+    </button>
   )
 }
 

@@ -46,7 +46,6 @@ describe('view product details spec', () => {
         .url().should('eq', 'http://localhost:3000/')
       cy.get('.category').contains('Foundation').click()
       cy.showDetails('last', 1042, 'deciem', 'DECIEM', 'Coverage Foundation', 'Coverage Foundations are full-coverage formulations available in a comprehensive shade range across 21 shades. These foundations contain higher pigment levels than our Serum Foundations but still offer a smooth finish that avoids the heavy makeup look that can make skin appear more aged. The texture is that of a lightweight, non-oily cream.', 6.00, 21, 'rgb(244, 229, 214)')
-      // cy.get('.product-rating')
       cy.get('.product-rating')
         .contains('Rating')
       cy.get('span').should('have.length', 5)

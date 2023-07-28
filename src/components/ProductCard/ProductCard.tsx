@@ -1,8 +1,9 @@
 import './ProductCard.css'
-import { Link } from 'react-router-dom';
-
+import { Link, useLocation } from 'react-router-dom';
+import fiveStars from '../../images/stars.png'
 
 interface ProductCardProps {
+  searching: boolean
   image: string
   brand: string
   name: string
@@ -11,6 +12,7 @@ interface ProductCardProps {
 }
 
 const ProductCard = (props: ProductCardProps) => {
+  const location = useLocation().pathname
   const mainTags = ['Vegan', 'Organic', 'cruelty free']
   const tags = props.tags.filter(tag => mainTags.some(main => main === tag))
   const tagEls = tags.map(tag => {
@@ -18,7 +20,7 @@ const ProductCard = (props: ProductCardProps) => {
   })
 
   return (
-    <Link className='product-card' to={`/product/${props.id}`} >
+    <Link className={!location.includes('favorites') && !location.includes('product') && !props.searching ? 'featured-card product-card' : 'product-card'}to={`/product/${props.id}`} >
       <div className="tags-container">
         {tagEls}
       </div>
@@ -27,6 +29,7 @@ const ProductCard = (props: ProductCardProps) => {
       </div>
       <h2 className='product-brand'>{props.brand}</h2>
       <p className='product-name'>{props.name.replace('&trade;', '\u2122')}</p>
+      {!location.includes('favorites') && !location.includes('product') && !props.searching && <img className='five-stars' src={fiveStars} alt='five star rating'/>}
     </Link>
   )
 }

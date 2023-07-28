@@ -55,6 +55,7 @@ const ProductContainer = ({allProducts, filteredProducts, savedProducts, searchi
     return products.map(product => {
       return (
         <ProductCard 
+        searching={searching}
         image={product.api_featured_image}
         brand={product.brand}
         name={product.name}

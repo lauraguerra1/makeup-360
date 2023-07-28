@@ -26,12 +26,16 @@ describe('view product details spec', () => {
     cy.get('.website-link-button')
   })
 
-  beforeEach(() => {
+  const interceptData = (status) => {
     cy.intercept('GET', 'http://makeup-api.herokuapp.com/api/v1/products.json', {
-      statusCode: 200,
+      statusCode: status,
       fixture: 'products.json'
     }).as('getProducts')
     cy.visit('http://localhost:3000')
+  }
+
+  beforeEach(() => {
+    interceptData(200)
   })
 
   it('should show a chosen product\'s detail page', () => {
@@ -49,5 +53,10 @@ describe('view product details spec', () => {
       cy.get('.product-wrapper')
         .should('have.length', 1)
     })
+  })
+
+  it('should handle 500 error', () => {
+    interceptData(500)
+
   })
 })

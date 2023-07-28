@@ -33,7 +33,7 @@ const ProductDetail = ({allProducts, savedProducts, removeFromSavedProducts, add
     <div className='product-detail-card'>
       {chosenProductDetails ? (
         <div className='product-detail-container'>
-            <div className='deatil-image-container'>
+            <div className='detail-image-container'>
               <Link  target='_blank' to={chosenProductDetails.product_link} >
                 <img src={chosenProductDetails.api_featured_image} className='product-image' id={chosenProductDetails.id.toString()} alt={chosenProductDetails.name}/>
               </Link>

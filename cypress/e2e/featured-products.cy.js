@@ -1,5 +1,11 @@
 describe('Featured Products Section', () => {
 
+  Cypress.Commands.add('checkRating', (name) => {
+    cy.get('.product-card').find(`img[alt="${name}"]`).click()
+    .get('.product-rating').contains('5')
+    .get('.top-nav').find('img[alt="Makeup 360 logo"]').click()
+  })
+
   beforeEach(() => {
     cy.visit('http://localhost:3000')
     cy.intercept('GET', 'http://makeup-api.herokuapp.com/api/v1/products.json', {

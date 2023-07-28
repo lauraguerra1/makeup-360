@@ -18,5 +18,9 @@ describe('Featured Products Section', () => {
   it('Should display 4 product cards with rating strictly equal to 5', () => {
     cy.get('h2').contains('Featured Items')
     .get('.product-wrapper').find('.product-card').should('have.length', 4)
+    .checkRating('Serum Foundation')
+    .checkRating('Coverage Foundation')
+    .checkRating('Precision Brow Pencil')
+    .checkRating('Sculpt & Highlight Brow Contour')
   })
 })

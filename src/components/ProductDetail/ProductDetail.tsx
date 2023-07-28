@@ -32,8 +32,8 @@ const ProductDetail = ({allProducts, savedProducts, removeFromSavedProducts, add
     <div className='product-detail-card'>
       {chosenProductDetails ? (
         <div className='product-detail-container'>
-            <div className='image-container'>
-              <Link to={chosenProductDetails.product_link} >
+            <div className='deatil-image-container'>
+              <Link  target='_blank' to={chosenProductDetails.product_link} >
                 <img src={chosenProductDetails.api_featured_image} className='product-image' id={chosenProductDetails.id.toString()} alt={chosenProductDetails.name}/>
               </Link>
             </div>
@@ -56,7 +56,7 @@ const ProductDetail = ({allProducts, savedProducts, removeFromSavedProducts, add
                 ) : null}
 
               <div className='buttons-container'>
-                <Link to={chosenProductDetails.product_link} > 
+                <Link target='_blank' to={chosenProductDetails.product_link} > 
                   <button className='website-link-button'>View On Product Website</button>
                 </Link>
                 <button className='save-button' onClick={savedProduct ? () => removeFromSavedProducts(savedProduct) : () => addToSavedProducts(chosenProductDetails)}><img src={savedProduct? unfavorite :favorite} alt='add to favorites' className='add-product-to-favorites'/></button>

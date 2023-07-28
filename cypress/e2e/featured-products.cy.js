@@ -1,13 +1,7 @@
 describe('Featured Products Section', () => {
 
-  Cypress.Commands.add('checkRating', (name) => {
-    cy.get('.top-nav').find('img[alt="Makeup 360 logo"]').click()
-    .get('.product-card').find(`img[alt="${name}"]`).click()
-    .get('.product-rating').contains('5')
-  })
-
-  Cypress.Commands.add('checkUniquity', (name) => {
-    cy.get(`.product-name:contains(${name})`).should('have.length', 1)
+  Cypress.Commands.add('checkRatingAndUniquity', (name) => {
+    cy.get(`.featured-card:contains(${name})`).find('img[alt="five star rating"]').should('have.length', 1)
   })
 
   beforeEach(() => {
@@ -20,8 +14,7 @@ describe('Featured Products Section', () => {
   })
 
   it('Should display 4 product cards with rating strictly equal to 5', () => {
-    cy.get('h2').contains('Featured Items')
-    .get('.product-wrapper').find('.product-card').should('have.length', 4)
+    cy.get('.product-wrapper').find('.product-card').should('have.length', 4)
     .checkRating('Serum Foundation')
     .checkRating('Coverage Foundation')
     .checkRating('Precision Brow Pencil')

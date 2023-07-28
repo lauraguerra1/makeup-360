@@ -4,6 +4,7 @@ import { Product } from '../../apiTypes';
 import ProductColors from '../ProductColors/ProductColors';
 import favorite from '../../images/favorite.png';
 import unfavorite from '../../images/unfavorite.png'
+import ReactStars from 'react-stars';
 
 interface ProductDetailProps {
   allProducts: Product[]
@@ -50,10 +51,13 @@ const ProductDetail = ({allProducts, savedProducts, removeFromSavedProducts, add
                 ) : null }
 
               <ProductColors hexColors={chosenProductDetails.product_colors}/>
-              
-              {chosenProductDetails.rating !== null ? (
-                <div className='product-rating'>Rating: {chosenProductDetails.rating}</div>
-                ) : null}
+
+              {chosenProductDetails.rating && 
+                <section className='product-rating'>
+                  <p>Rating: </p>
+                  <ReactStars color1='#e6beae' edit={false} count={chosenProductDetails.rating} half={true}/>
+                </section>
+              }
 
               <div className='buttons-container'>
                 <Link target='_blank' to={chosenProductDetails.product_link} > 

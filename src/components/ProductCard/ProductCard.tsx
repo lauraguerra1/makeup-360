@@ -1,9 +1,12 @@
 import './ProductCard.css'
 import { Link, useLocation } from 'react-router-dom';
 import fiveStars from '../../images/stars.png'
+import ReactStars from 'react-stars'
+import { checkPage } from '../../helpers';
 
 interface ProductCardProps {
   searching: boolean
+  rating: number | null
   image: string
   brand: string
   name: string
@@ -29,7 +32,10 @@ const ProductCard = (props: ProductCardProps) => {
       </div>
       <h2 className='product-brand'>{props.brand}</h2>
       <p className='product-name'>{props.name.replace('&trade;', '\u2122')}</p>
-      {!location.includes('favorites') && !location.includes('product') && !props.searching && <img className='five-stars' src={fiveStars} alt='five star rating'/>}
+      { checkPage(location, props.searching) === 'featured page' 
+        ? <img className='five-stars' src={fiveStars} alt='five star rating'/>
+        : props.rating && <ReactStars color1='#e6beae' edit={false} count={props.rating} half={true}/>
+      }
     </Link>
   )
 }

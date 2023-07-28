@@ -3,6 +3,7 @@ import { Product } from "../../apiTypes"
 import ProductCard from "../ProductCard/ProductCard"
 import './ProductContainer.css'
 import { useLocation } from "react-router-dom"
+import { checkPage } from "../../helpers"
 
 interface PCProps {
   allProducts: Product[],
@@ -56,6 +57,7 @@ const ProductContainer = ({allProducts, filteredProducts, savedProducts, searchi
       return (
         <ProductCard 
         searching={searching}
+        rating={product.rating}
         image={product.api_featured_image}
         brand={product.brand}
         name={product.name}

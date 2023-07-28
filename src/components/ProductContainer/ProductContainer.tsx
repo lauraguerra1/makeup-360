@@ -66,11 +66,8 @@ const ProductContainer = ({allProducts, filteredProducts, savedProducts, searchi
       })
     } 
     
-  let featuredProductCards;
-  if(featuredProducts.length) {
-  featuredProductCards = getProductCards(featuredProducts)
-  }
   
+  const featuredProductCards = getProductCards(featuredProducts)
   const filteredProductCards = getProductCards(filteredProducts)
   const savedProductCards = getProductCards(savedProducts)
 

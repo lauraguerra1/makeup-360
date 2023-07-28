@@ -42,7 +42,7 @@ const ProductDetail = ({allProducts, savedProducts, removeFromSavedProducts, add
               <h4>{chosenProductDetails.name.replace('&trade;', '\u2122')}</h4>
 
               {chosenProductDetails.description ? (
-                <div className='product-description'>{chosenProductDetails.description.replace(/<[^>]*>/g, '')}</div>
+                <article className='product-description'>{chosenProductDetails.description.replace(/<[^>]*>/g, '')}</article>
                 ) : <p>Sorry, no product details currently available.</p>}
 
               {chosenProductDetails.price !== '0.0' ? (

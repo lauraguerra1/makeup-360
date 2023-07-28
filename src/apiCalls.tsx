@@ -8,7 +8,7 @@ const handleError = (response: Response): Promise<Product[]> => {
 }
 
 const getAllProducts = async(): Promise<Product[]> => {
-  let response = await fetch('http://makeup-api.herokuapp.com/api/v1/products.json')
+  let response = await fetch('https://makeup-api.herokuapp.com/api/v1/products.json')
   let data = await handleError(response)
   return data
 }

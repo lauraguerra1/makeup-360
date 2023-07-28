@@ -6,6 +6,10 @@ describe('Featured Products Section', () => {
     .get('.top-nav').find('img[alt="Makeup 360 logo"]').click()
   })
 
+  Cypress.Commands.add('checkUniquity', (name) => {
+    cy.get(`.product-name:contains(${name})`).should('have.length', 1)
+  })
+
   beforeEach(() => {
     cy.visit('http://localhost:3000')
     cy.intercept('GET', 'http://makeup-api.herokuapp.com/api/v1/products.json', {

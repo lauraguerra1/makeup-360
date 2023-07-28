@@ -27,4 +27,11 @@ describe('Featured Products Section', () => {
     .checkRating('Precision Brow Pencil')
     .checkRating('Sculpt & Highlight Brow Contour')
   })
+
+  it('Should only contain unique products', () => {
+    cy.checkUniquity('Serum Foundation')
+    .checkUniquity('Coverage Foundation')
+    .checkUniquity('Precision Brow Pencil')
+    .checkUniquity('Sculpt & Highlight Brow Contour')
+  })
 })

@@ -12,7 +12,7 @@ describe('Featured Products Section', () => {
 
   beforeEach(() => {
     cy.visit('http://localhost:3000')
-    cy.intercept('GET', 'http://makeup-api.herokuapp.com/api/v1/products.json', {
+    cy.intercept('GET', 'https://makeup-api.herokuapp.com/api/v1/products.json', {
       statusCode: 200,
       fixture: 'products.json'
     }).as('getProducts')

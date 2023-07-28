@@ -5,8 +5,7 @@ import './ProductColors.css'
 interface ProductColorsProps {
   hexColors: ProductColor[];
 }
-const ProductColors = ({hexColors}: ProductColorsProps) => {
-  
+const ProductColors = ({hexColors}: ProductColorsProps) => {  
   return (
     <div className="color-container">
       {hexColors.map((hexColor) => (

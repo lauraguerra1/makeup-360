@@ -1,6 +1,7 @@
 .color-container {
   display: flex;
   flex-wrap: wrap;
-  height: min-contanet;
-  max-width: 100%;
+  height: min-content;
+  width: 100%;
+  justify-content: center;
 }

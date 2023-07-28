@@ -1,16 +1,13 @@
 .product-detail-card {
   display: flex;
   align-items: center;
-  width: 70vw;
+  justify-content: center;
 }
 
 .product-image {
   height: 50vh;
-  width: 60vw;
-}
-
-.image-container {
-  width: 40vw;
+  max-width: 60vw;
+  margin-right: 5vw;
 }
 
 .product-detail-container {
@@ -27,6 +24,7 @@
 
 .buttons-container{
   display: flex;
+  align-items: center;
   padding: 20px;
   /* border: solid pink; */
 }
@@ -36,10 +34,17 @@
   background-color:#e6beae;
   border: none;
   padding: 6px;
+  cursor: pointer;
 }
 
 .add-product-to-favorites{
-  height: 22px;
+  height: 30px;
   padding: 2px;
-  /* border: solid pink; */
+  object-fit: cover;
+}
+
+.save-button {
+  background: none;
+  border: none;
+  height: 100%;
 }

@@ -15,8 +15,13 @@ describe('product container elements', () => {
 
   it('should display a header that describes the type of items within the product container', () => {
     cy.wait('@getProducts').then((interception) => {
-      cy.checkIfItemFeatured('first')
-      cy.checkIfItemFeatured('last')
+      cy.get('h2').contains('Featured Items')
+      .checkIfItemFeatured('first')
+      .checkIfItemFeatured('last')
+      .get('.featured-card')['first']().click()
+      .get('.add-product-to-favorites').click()
+      .get('img[alt="view favorites link"]').click()
+      .get('h2').contains('Saved Items')
     })
   })
 

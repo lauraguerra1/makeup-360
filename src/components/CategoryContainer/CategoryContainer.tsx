@@ -27,7 +27,7 @@ const CategoryContainer = ({selectedCategory, updateCategory}: CategoryContainer
       <section className="category-container">
         {categoryElements}
       </section>
-      <button onClick={() => scroll(200)} className='right-scroll-btn'><img src={forward} alt='back button'/></button>
+      <button onClick={() => scroll(200)} className='right-scroll-btn'><img src={forward} alt='forward button'/></button>
     </section>
   )
 }

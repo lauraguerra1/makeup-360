@@ -25,4 +25,13 @@ describe('product container elements', () => {
     })
   })
 
+  it('should display a helpful message if no items are found', () => {
+    cy.wait('@getProducts').then((interception) => {
+      cy.get('img[alt="view favorites link"]').click()
+      .get('.product-wrapper').contains('When you save an item it will appear here!')
+      .get('button').contains('Eyebrow').click()
+      .get('.product-wrapper').contains('No results for your search! Please try a different search!')
+    })
+  })
+
 })

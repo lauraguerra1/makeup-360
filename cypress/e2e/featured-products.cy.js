@@ -15,10 +15,12 @@ describe('Featured Products Section', () => {
   })
 
   it('Should display 4 unique product cards with ratings strictly equal to 5', () => {
-    cy.get('.product-wrapper').find('.product-card').should('have.length', 4)
-    .checkRatingAndUniquity('Serum Foundation')
-    .checkRatingAndUniquity('Coverage Foundation')
-    .checkRatingAndUniquity('Precision Brow Pencil')
-    .checkRatingAndUniquity('Sculpt & Highlight Brow Contour')
+      cy.wait('@getProducts').then((interception) => {
+      cy.get('.product-wrapper').find('.product-card').should('have.length', 4)
+      .checkRatingAndUniquity('Serum Foundation')
+      .checkRatingAndUniquity('Coverage Foundation')
+      .checkRatingAndUniquity('Precision Brow Pencil')
+      .checkRatingAndUniquity('Sculpt & Highlight Brow Contour')
+    })
   })
 })

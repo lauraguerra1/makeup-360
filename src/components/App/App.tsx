@@ -7,6 +7,7 @@ import { Route, Routes } from 'react-router-dom';
 import { getAllProducts } from '../../apiCalls';
 import { Product } from '../../apiTypes';
 import ProductDetail from '../ProductDetail/ProductDetail'
+import EmptyState from '../EmptyState/EmptyState';
 
 const App = () => {
   const [allProducts, setAllProducts] = useState<Product[]>([])
@@ -82,6 +83,8 @@ const App = () => {
           <Route path='/' element={<ProductContainer filteredProducts={filteredProducts} allProducts={allProducts} savedProducts={savedProducts} searching={searching}/>} />
           <Route path='/product/:id' element={<ProductDetail allProducts={allProducts} savedProducts={savedProducts} addToSavedProducts={addToSavedProducts} removeFromSavedProducts={removeFromSavedProducts} />} />
           <Route path='/favorites' element={<ProductContainer filteredProducts={filteredProducts} allProducts={allProducts} savedProducts={savedProducts} searching={searching}/>}/>
+          <Route path='/favorites/*' element={<EmptyState errorMessage={'Nothing to see here! Please go back!'}/>} />
+          <Route path='/*' element={<EmptyState errorMessage={'Nothing to see here! Please go back!'}/>} />
         </Routes>
       }
     </main>

@@ -1,46 +1,46 @@
-# Getting Started with Create React App
+<div align="center">
+<h1> MAKEUP 360 </h1>
+Browse collections of makeup products to find your perfect look.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[DEPLOYED LINK](https://makeup-360-2fc69bda168c.herokuapp.com/)
 
-## Available Scripts
+Technologies used:<br>
+  <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" />
+  <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" />
+  <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" />
+  <img src="https://img.shields.io/badge/Heroku-430098?style=for-the-badge&logo=heroku&logoColor=white" />
+  <img src="https://img.shields.io/badge/-cypress-%23E5E5E5?style=for-the-badge&logo=cypress&logoColor=058a5e" />
+  <br>
+  <img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" />
+  <img src="https://img.shields.io/badge/NPM-%23CB3837.svg?style=for-the-badge&logo=npm&logoColor=white"/>
+  <img src="https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white"/>
+</div>
 
-In the project directory, you can run:
+## Abstract: 
+This app displays featured top-rated items on the landing page. A user can browse products filtering by brand name through a searchbar and/or clicking on a product category. The user can click on any product to see it's details and is able to add or remove the product form their favorites. The user can browse their favorited products and filter them by brand and/or category. 
 
-### `npm start`
+# Preview of App:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Installation Instructions:
+- Fork [this](https://github.com/lauraguerra1/makeup-360) repository. 
+- Clone it to your local machine using the command: `git clone git@github.com:lauraguerra1/makeup-360.git`.
+- Run the command: `cd makeup-360`
+- Run the command: `npm install`
+- Run the command: `npm start`
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Context:
+- All contributors are currently enrolled in the seven month long Front End Engineering program at Turing School of Software and Design. This project was created during the third module of the program, which has a total of four modules. 
 
-### `npm test`
+## Contributors:
+- [Laura Garcia Guerra](https://github.com/lauraguerra1)
+- [Fernando Robles](https://github.com/fernandorobles97)
+- [Paulina Rubio](https://github.com/paulina-isabel)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Learning Goals:
+- Learning and incorporating a new technology that isn’t explicitly taught during the program
+- Create a user interface that is easy to use and clearly displays information
+- Write DRY, reusable code that follows SRP and trends toward function purity
+- Make network requests (using fetch API)
+- Increase competency with React fundamentals
+- Test React components & asynchronous JS with Cypress
+- Create a multi-page UX using Router

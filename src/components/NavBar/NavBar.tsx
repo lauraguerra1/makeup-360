@@ -1,5 +1,5 @@
 import './NavBar.css'
-import logo from '../../images/logo.png'
+import logo from '../../images/logo.gif'
 import unfavorite from '../../images/unfavorite.png'
 import cancel from '../../images/cancel.png'
 import { Product } from '../../apiTypes'
@@ -35,9 +35,6 @@ const NavBar = ({loading, updateSearching, allProducts, savedProducts, updatePro
 
   useEffect(() => {
     searchData || selectedCategory ? setClearAllowed(true) : setClearAllowed(false)
-    // if location includes favorites, pass in saved 
-    //else pass in all products 
-    // if we add saved products to the dependency  for some reason it shows all filtered products 
     location.includes('favorites') 
     ? updateProducts(savedProducts, searchData, makeSnakeCase(selectedCategory))
     : updateProducts(allProducts, searchData, makeSnakeCase(selectedCategory))

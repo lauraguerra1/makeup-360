@@ -7,7 +7,7 @@
 }
 
 .loading {
-  height: 40vmin;
+  height: 20vmin;
   pointer-events: none;
   border-radius: 50%
 }
@@ -15,7 +15,7 @@
 .loading-txt {
   text-align: center;
   font-weight: bold;
-  color: red;
+  color: #d1b296;
 }
 
 @media (prefers-reduced-motion: no-preference) {

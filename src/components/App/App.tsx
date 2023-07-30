@@ -13,7 +13,7 @@ const App = () => {
   const [allProducts, setAllProducts] = useState<Product[]>([])
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([])
   const [loading, setLoading] = useState(false)
-  const [error, setError] = useState<Error | string | unknown>('')
+  const [error, setError] = useState<Error | null>(null)
   const [searching, setSearching] = useState(false)
   const [savedProducts, setSavedProducts] = useState<Product[]>([])
   
@@ -63,7 +63,9 @@ const App = () => {
         setAllProducts(await getAllProducts())
         setLoading(false)
       }catch(error) {
-        setError(error)
+        if(error instanceof Error) {
+          setError(error)
+        }
         setLoading(false)
       }
     }
@@ -73,7 +75,9 @@ const App = () => {
   return (
     <main>
       <NavBar loading={loading} updateSearching={updateSearching} allProducts={allProducts} savedProducts={savedProducts} updateProducts={updateProducts}/>
-      {loading ? 
+      {error ?
+       <EmptyState errorMessage={error.message}/>
+      :loading ? 
         <section className='loading-container'>
           <img className='loading' src={logo} alt='Makeup 360 spinning logo' />
           <p className='loading-txt'>Loading...</p> 

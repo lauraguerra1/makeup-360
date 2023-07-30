@@ -56,4 +56,13 @@ describe('search and filter spec', () => {
     })
   })
 
+  it('should show additional filter options when either arrow is clicked', () => {
+    cy.wait('@getProducts').then((interception) => {
+      cy.get('.right-scroll-btn').click({ force: true })
+      .get('button').contains('Lip liner').should('be.visible')
+      .get('.left-scroll-btn').click({ force: true })
+      .get('button').contains('Blush').should('be.visible')
+     })
+  })
+
 })

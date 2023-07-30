@@ -56,12 +56,38 @@ Cypress.Commands.add('assertProduct', (position, name, brand, tags) => {
   }
 })
 
-Cypress.Commands.add('checkRating', (name) => {
-  cy.get('.top-nav').find('img[alt="Makeup 360 logo"]').click()
-  .get('.product-card').find(`img[alt="${name}"]`).click()
-  .get('.product-rating').contains('5')
+Cypress.Commands.add('checkRatingAndUniquity', (name) => {
+  cy.get(`.featured-card:contains(${name})`).should('have.length', 1)
+  .find('img[alt="five star rating"]')
 })
 
-Cypress.Commands.add('checkUniquity', (name) => {
-  cy.get(`.product-name:contains(${name})`).should('have.length', 1)
+Cypress.Commands.add('showDetails', (position, productId, brand, uppercaseBrand, name, description, price, length, color) => {
+  cy.get('.product-card')[position]().click()
+    .url().should('eq', `http://localhost:3000/product/${productId}`)
+  cy.get('.product-detail-container')
+  cy.contains('h3', `${uppercaseBrand}`)
+  cy.contains('h4', `${name}`)
+  cy.get('.product-description')
+    .contains(`${description}`)
+  cy.get('.product-price')
+    .contains(`Price: $${price}`)
+  cy.get('.color-container')
+    .children().should('have.length', length)
+    .first().should('have.css', 'background-color', `${color}`)
+  cy.get('.buttons-container')
+  cy.get('.add-product-to-favorites').click()
+  cy.get('.favorites').click()
+    .url().should('eq', 'http://localhost:3000/favorites')
+  cy.get('.product-container')
+    .get('.product-card')
+    .get(`#${productId}`)
+  cy.get('.product-brand').contains(`${brand}`)
+  cy.get('.product-name').contains(`${name}`)
+    .go(-1).url().should('eq', `http://localhost:3000/product/${productId}`)
+  cy.get('.website-link-button')
+});
+
+Cypress.Commands.add('checkIfItemFeatured', (position) => {
+  cy.get('.product-wrapper')
+  .find('a')[position]().should('have.class', 'featured-card')
 })

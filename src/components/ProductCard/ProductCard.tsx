@@ -34,7 +34,7 @@ const ProductCard = (props: ProductCardProps) => {
       <p className='product-name'>{props.name.replace('&trade;', '\u2122')}</p>
       { checkPage(location, props.searching) === 'featured page' 
         ? <img className='five-stars' src={fiveStars} alt='five star rating'/>
-        : props.rating && <ReactStars color1='#e6beae' edit={false} count={props.rating} half={true}/>
+        : props.rating && <div className='react-stars-container'><ReactStars color1='#e6beae' edit={false} count={props.rating} half={true}/></div>
       }
     </Link>
   )

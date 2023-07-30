@@ -1,10 +1,5 @@
 describe('Featured Products Section', () => {
 
-  Cypress.Commands.add('checkRatingAndUniquity', (name) => {
-    cy.get(`.featured-card:contains(${name})`).should('have.length', 1)
-    .find('img[alt="five star rating"]')
-  })
-
   beforeEach(() => {
     cy.visit('http://localhost:3000')
     cy.intercept('GET', 'https://makeup-api.herokuapp.com/api/v1/products.json', {

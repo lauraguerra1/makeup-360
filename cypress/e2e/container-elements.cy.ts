@@ -1,10 +1,5 @@
 describe('product container elements', () => {
 
-  Cypress.Commands.add('checkIfItemFeatured', (position) => {
-    cy.get('.product-wrapper')
-    .find('a')[position]().should('have.class', 'featured-card')
-  })
-
   beforeEach(() => {
     cy.intercept('GET', 'https://makeup-api.herokuapp.com/api/v1/products.json', {
       statusCode: 200,

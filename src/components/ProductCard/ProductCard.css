@@ -64,4 +64,10 @@
   .product-brand, .product-name {
     text-align: center;
   }
+
+  .react-stars-container {
+    width: 100%;
+    display: flex; 
+    justify-content: center;
+  }
 }

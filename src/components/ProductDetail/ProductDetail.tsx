@@ -5,6 +5,7 @@ import ProductColors from '../ProductColors/ProductColors';
 import favorite from '../../images/favorite.png';
 import unfavorite from '../../images/unfavorite.png'
 import ReactStars from 'react-stars';
+import EmptyState from '../EmptyState/EmptyState';
 
 interface ProductDetailProps {
   allProducts: Product[]
@@ -68,7 +69,7 @@ const ProductDetail = ({allProducts, savedProducts, removeFromSavedProducts, add
             </aside>
         </div>
       ) : (
-        <div>Product not found</div>
+        <EmptyState errorMessage='Product not found. Please go back!'/>
       )}
     </div>
   )

@@ -1,0 +1,9 @@
+.error-msg-container {
+  display: flex;
+  justify-content: center;
+}
+
+.error-message {
+  color:red;
+  font-size: x-large;
+}

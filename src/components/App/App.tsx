@@ -7,12 +7,13 @@ import { Route, Routes } from 'react-router-dom';
 import { getAllProducts } from '../../apiCalls';
 import { Product } from '../../apiTypes';
 import ProductDetail from '../ProductDetail/ProductDetail'
+import EmptyState from '../EmptyState/EmptyState';
 
 const App = () => {
   const [allProducts, setAllProducts] = useState<Product[]>([])
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([])
   const [loading, setLoading] = useState(false)
-  const [error, setError] = useState<Error | string | unknown>('')
+  const [error, setError] = useState<Error | null>(null)
   const [searching, setSearching] = useState(false)
   const [savedProducts, setSavedProducts] = useState<Product[]>([])
   
@@ -61,8 +62,10 @@ const App = () => {
       try {
         setAllProducts(await getAllProducts())
         setLoading(false)
-      } catch(error) {
-        setError(error)
+      }catch(error) {
+        if(error instanceof Error) {
+          setError(error)
+        }
         setLoading(false)
       }
     }
@@ -72,7 +75,9 @@ const App = () => {
   return (
     <main>
       <NavBar loading={loading} updateSearching={updateSearching} allProducts={allProducts} savedProducts={savedProducts} updateProducts={updateProducts}/>
-      {loading ? 
+      {error ?
+       <EmptyState errorMessage={error.message}/>
+      :loading ? 
         <section className='loading-container'>
           <img className='loading' src={logo} alt='Makeup 360 spinning logo' />
           <p className='loading-txt'>Loading...</p> 
@@ -82,6 +87,8 @@ const App = () => {
           <Route path='/' element={<ProductContainer filteredProducts={filteredProducts} allProducts={allProducts} savedProducts={savedProducts} searching={searching}/>} />
           <Route path='/product/:id' element={<ProductDetail allProducts={allProducts} savedProducts={savedProducts} addToSavedProducts={addToSavedProducts} removeFromSavedProducts={removeFromSavedProducts} />} />
           <Route path='/favorites' element={<ProductContainer filteredProducts={filteredProducts} allProducts={allProducts} savedProducts={savedProducts} searching={searching}/>}/>
+          <Route path='/favorites/*' element={<EmptyState errorMessage={'Nothing to see here! Please go back!'}/>} />
+          <Route path='/*' element={<EmptyState errorMessage={'Nothing to see here! Please go back!'}/>} />
         </Routes>
       }
     </main>

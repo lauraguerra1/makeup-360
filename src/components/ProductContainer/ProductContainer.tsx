@@ -14,6 +14,7 @@ interface PCProps {
 
 const ProductContainer = ({allProducts, filteredProducts, savedProducts, searching}: PCProps) => {
   const location = useLocation().pathname
+  const currentPage = checkPage(location, searching)
   const [featuredProducts, setFeaturedProducts] = useState<Product[]>([])
   const randomProducts: Product[] = []
 
@@ -80,6 +81,7 @@ const ProductContainer = ({allProducts, filteredProducts, savedProducts, searchi
       <div className="product-wrapper" >
         {searching ? filteredProductCards : location.includes('favorites') ? savedProductCards : featuredProductCards}
         {searching && !filteredProducts.length && <p>No results for your search! Please try a different search!</p>}
+        {currentPage === 'favorites page' && !savedProducts.length && <p>When you save an item it will appear here!</p>}
       </div>
     </section>
   )

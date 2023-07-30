@@ -20,6 +20,12 @@ Technologies used:<br>
 This app displays featured top-rated items on the landing page. A user can browse products filtering by brand name through a searchbar and/or clicking on a product category. The user can click on any product to see it's details and is able to add or remove the product form their favorites. The user can browse their favorited products and filter them by brand and/or category. 
 
 # Preview of App:
+ <div align='center'> 
+  <h2>Combined Search & Filter </h2>
+  <img src="https://user-images.githubusercontent.com/121131581/257073252-13e6f52f-90c5-4965-853b-b5d25af1f909.gif" alt='gif of searching and filtering' />
+  <h2>Save & Unsave Items</h2>
+  <img src='https://user-images.githubusercontent.com/121131581/257073420-d8306b89-2c1b-4ab1-be7b-e3a8448fa741.gif' alt='gif of saving and unsaving an item'>
+ </div>
 
 ## Installation Instructions:
 - Fork [this](https://github.com/lauraguerra1/makeup-360) repository. 
@@ -37,7 +43,7 @@ This app displays featured top-rated items on the landing page. A user can brows
 - [Paulina Rubio](https://github.com/paulina-isabel)
 
 ## Learning Goals:
-- Learning and incorporating a new technology that isn’t explicitly taught during the program
+- Learning and incorporating TypeScript, a new technology that isn’t explicitly taught during the program
 - Create a user interface that is easy to use and clearly displays information
 - Write DRY, reusable code that follows SRP and trends toward function purity
 - Make network requests (using fetch API)

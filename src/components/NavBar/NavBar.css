@@ -59,5 +59,9 @@ nav {
     width: 65%;
     justify-content: center;
   }
+
+  nav {
+    margin-bottom: 12%;
+  }
 }
 

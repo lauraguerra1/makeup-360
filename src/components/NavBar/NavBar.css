@@ -9,7 +9,8 @@ nav {
 }
 
 .logo-link > img {
-  height: 90px
+  padding-top: 5px;
+  height: 140px
 }
 
 .top-nav {

@@ -17,7 +17,7 @@ const App = () => {
   const [savedProducts, setSavedProducts] = useState<Product[]>([])
   
   const getSavedProducts = () => {
-    const storage = localStorage.savedProducts
+    const storage: string = localStorage.savedProducts
     if(storage) {
       setSavedProducts(JSON.parse(storage))
     } 
@@ -61,7 +61,7 @@ const App = () => {
       try {
         setAllProducts(await getAllProducts())
         setLoading(false)
-      }catch(error) {
+      } catch(error) {
         setError(error)
         setLoading(false)
       }

@@ -1,9 +1,7 @@
-import '../support/index'
-
 describe('search and filter spec', () => {
 
   beforeEach(() => {
-    cy.intercept('GET', 'http://makeup-api.herokuapp.com/api/v1/products.json', {
+    cy.intercept('GET', 'https://makeup-api.herokuapp.com/api/v1/products.json', {
       statusCode: 200,
       fixture: 'products.json'
     }).as('getProducts')

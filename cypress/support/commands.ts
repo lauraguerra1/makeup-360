@@ -37,11 +37,11 @@
 // }
 
 Cypress.Commands.add('search', (brand) => {
-  cy.get('input[type="search"]').type(brand)
+ cy.get('input[type="search"]').type(brand)
 })
 
 Cypress.Commands.add('filterBy', (category) => {
-  cy.get('.category').contains(category).click()
+   cy.get('.category').contains(category).click()
 })
 
 Cypress.Commands.add('assertProduct', (position, name, brand, tags) => {

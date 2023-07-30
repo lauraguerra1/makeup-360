@@ -57,7 +57,7 @@
 
 @media screen and (max-width: 602px) {
   .product-card {
-    width: 80%;
+    max-width: 90%;
     padding: 10px;
   }
 

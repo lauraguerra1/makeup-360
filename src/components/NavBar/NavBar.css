@@ -60,6 +60,14 @@ nav {
     justify-content: center;
   }
 
+  .bottom-nav {
+    max-width: 95%;
+  }
+
+  .clear-search {
+    padding: none;
+  }
+
   nav {
     margin-bottom: 12%;
   }

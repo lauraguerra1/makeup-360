@@ -21,7 +21,7 @@ describe('search and filter spec', () => {
   })
 
   beforeEach(() => {
-    cy.intercept('GET', 'http://makeup-api.herokuapp.com/api/v1/products.json', {
+    cy.intercept('GET', 'https://makeup-api.herokuapp.com/api/v1/products.json', {
       statusCode: 200,
       fixture: 'products.json'
     }).as('getProducts')
@@ -74,6 +74,15 @@ describe('search and filter spec', () => {
        .get('.clear-search').click()
        .get('h2').contains('Featured Items')
     })
+  })
+
+  it('should show additional filter options when either arrow is clicked', () => {
+    cy.wait('@getProducts').then((interception) => {
+      cy.get('.right-scroll-btn').click({ force: true })
+      .get('button').contains('Lip liner').should('be.visible')
+      .get('.left-scroll-btn').click({ force: true })
+      .get('button').contains('Blush').should('be.visible')
+     })
   })
 
 })

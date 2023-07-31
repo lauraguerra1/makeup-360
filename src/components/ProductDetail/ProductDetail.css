@@ -97,8 +97,8 @@
 @media screen and (max-width: 520px) {
   .product-detail-card {
     height: 100%;
-    overflow-y: auto;
-    padding-top: 20%;
+    padding-top: 30%;
+    align-items: center;
   }
 
   .product-detail-container {

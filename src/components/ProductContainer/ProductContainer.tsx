@@ -69,9 +69,15 @@ const ProductContainer = ({allProducts, filteredProducts, savedProducts, searchi
         )
       })
     } 
-    
   
-  const featuredProductCards = getProductCards(featuredProducts)
+  let featuredProductCards
+  if(featuredProducts.length) {
+    featuredProductCards = getProductCards(featuredProducts)
+  } else {
+    let fiveStars = allProducts.filter(product => product.rating === 5) 
+    featuredProductCards = getProductCards(fiveStars)
+  }
+
   const filteredProductCards = getProductCards(filteredProducts)
   const savedProductCards = getProductCards(savedProducts)
 

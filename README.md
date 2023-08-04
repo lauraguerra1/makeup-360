@@ -2,7 +2,7 @@
 <h1> MAKEUP 360 </h1>
 Browse collections of makeup products to find your perfect look.
 
-[DEPLOYED LINK](https://makeup-360-2fc69bda168c.herokuapp.com/)
+[DEPLOYED LINK](https://makeup-360.vercel.app/)
 
 Technologies used:<br>
   <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" />
